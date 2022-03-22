@@ -40,7 +40,7 @@ import {
             createdAt:firestore.FieldValue.serverTimestamp()
           })
           .then(() => {
-            console.log('User added!');
+            console.log('Product added!');
             ToastAndroid.show('Your Data Added Successfully', ToastAndroid.SHORT);
             navigation.navigate('Home');
           })

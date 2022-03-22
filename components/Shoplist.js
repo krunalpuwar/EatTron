@@ -37,7 +37,7 @@ const Shoplist = () => {
 
   return (
     <View>
-        <Text style={{color:'black',fontSize:20,fontWeight:'bold',marginHorizontal:9,padding:6}}>Our Top Brands</Text>
+        <Text style={{color:'black',fontSize:20,fontWeight:'bold',marginHorizontal:9,padding:6,textTransform:'uppercase'}}>Our Top Brands</Text>
       <FlatList 
       data={shoplist}      
       renderItem={lists}

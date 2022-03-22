@@ -15,7 +15,7 @@ const Login = ({navigation}) => {
   useEffect(() => {
     const unsubscribe = auth().onAuthStateChanged(users => {
       if (users) {
-        navigation.navigate('Home');
+        navigation.replace('Home');
         setUser(users);
         console.log(user)
         if (initializing) setInitializing(false);

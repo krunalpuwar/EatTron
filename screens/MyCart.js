@@ -10,9 +10,9 @@ import {
 //   import AntDesign from 'react-native-vector-icons/AntDesign';
   import CartData from '../components/CartData';
   
-  const MyCart = () => {
+  const MyCart = ({route}) => {
+    const price = route.params;
     const [setdata, newdata] = useState(null);
-    const [price, setPrice] = useState();
   
     const deletepost = ID => {
       console.log('Data ID IS: ' + ID);
@@ -94,12 +94,21 @@ import {
                   <FlatList
                     data={Pro}
                     renderItem={({item}) => (
-                      <CartData item={item} onDelete={deletepost} />
+                      <CartData item={item} onDelete={deletepost}  />
                     )}
                     keyExtractor={item => item.id}
                   />
           
         </ScrollView>
+
+        <View style={{backgroundColor:'green',padding:9}} >
+          <Text style={{textAlign:'center'}}>
+              Total Cart Value Is :  {Pro.reduce((acc, item) => acc + item.ProductMrp, 0)}
+                      
+           </Text>
+        </View>
+
+          
       </>
           )}
        </View>

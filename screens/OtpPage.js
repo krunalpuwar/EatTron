@@ -51,7 +51,7 @@ import {
       try {
         const res = await confirm.confirm(code);
         if (res) {
-          navigation.navigate('Home');
+          navigation.replace('Home');
         }
       } catch (error) {
         alert('Invalid code.');

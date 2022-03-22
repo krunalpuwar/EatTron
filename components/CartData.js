@@ -1,14 +1,25 @@
 import { StyleSheet, Text, View ,Image,TouchableOpacity} from 'react-native'
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
+import { useNavigation } from '@react-navigation/native';
+
 
 const CartData = ({item,index,onDelete}) => {
-
+  
+  const navigation = useNavigation();
   const [count,setCount] = useState(1);
   const [price,setPrice] = useState(item.ProductMrp);
-  
+   
+  const data = () => {
+    navigation.navigate('MyCart' ,{price})
+  }
 
+  useEffect(()=>{
+    data()
+  },[])
+ 
   return (
     <>
+    
     <View key={index}>
     <View style={{backgroundColor:'green',flexDirection:'row',margin:6,marginTop:12,flexWrap:'wrap',padding:6}}>
       <Image source={item.ProductImg} style={{height:90,width:90}}/>
@@ -29,7 +40,7 @@ const CartData = ({item,index,onDelete}) => {
                     setCount(1)
                     alert(0)
                     setPrice(price)
-
+                    
                   }
                 }}
                  >
@@ -41,7 +52,7 @@ const CartData = ({item,index,onDelete}) => {
                  onPress={() => {
                   setCount(count+1)
                   setPrice(price+item.ProductMrp)
-
+                  
                 }}>
                   <Text style={{color:'black'}}>+</Text>
                 </TouchableOpacity>
