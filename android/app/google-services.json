@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "903641636719",
+    "project_id": "eattron-58175",
+    "storage_bucket": "eattron-58175.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903641636719:android:fc411d7a9b5e6aee7b129a",
+        "android_client_info": {
+          "package_name": "com.eattron"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903641636719-jf14tpr40bph29ntmv15ne2nd6c5ss2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABOdvl4XYaLW_i9PwBMztc3fcYMH7VkGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903641636719-jf14tpr40bph29ntmv15ne2nd6c5ss2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
