@@ -43,7 +43,8 @@ import {
         const confirmation = await auth().signInWithPhoneNumber(num);
         setConfirm(confirmation);
       } catch (e) {
-        alert(e,"Error");
+        alert(e,"Error"),
+        console.log(e)
       }
     }
   

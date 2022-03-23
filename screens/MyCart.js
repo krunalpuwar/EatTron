@@ -4,15 +4,19 @@ import {
     FlatList,
     View,
     ScrollView,
+    TouchableOpacity
   } from 'react-native';
   import React, {useEffect, useState} from 'react';
   import firestore from '@react-native-firebase/firestore';
 //   import AntDesign from 'react-native-vector-icons/AntDesign';
   import CartData from '../components/CartData';
+import { useNavigation } from '@react-navigation/native';
   
-  const MyCart = ({route}) => {
-    const price = route.params;
+  const MyCart = () => {
     const [setdata, newdata] = useState(null);
+    const navigation = useNavigation();
+
+  
   
     const deletepost = ID => {
       console.log('Data ID IS: ' + ID);
@@ -48,6 +52,7 @@ import {
     }, 1000);
   
     const [Pro, setPro] = useState(null);
+    
   
     const GetData = async () => {
       var list = [];
@@ -101,11 +106,16 @@ import {
           
         </ScrollView>
 
-        <View style={{backgroundColor:'green',padding:9}} >
+        <View style={{backgroundColor:'green',padding:9,flexDirection:'row',justifyContent:'space-between',alignItems:'center'}} >
           <Text style={{textAlign:'center'}}>
-              Total Cart Value Is :  {Pro.reduce((acc, item) => acc + item.ProductMrp, 0)}
-                      
+              Total Cart Value Is :  ₹ {Pro.reduce((acc, item) => acc + item.ProductMrp, 0)}
            </Text>
+           <TouchableOpacity style={{backgroundColor:'black',padding:9}} onPress={() => navigation.navigate('Payment',{
+             Pro:Pro
+           })}>
+            <Text style={{textAlign:'center'}}>Make Payment</Text>
+            </TouchableOpacity>
+
         </View>
 
           

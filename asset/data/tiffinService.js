@@ -1,8 +1,22 @@
 const tiffindata = [
     {
         id:'1',
-        months:3,
-        times:"Lunch",
+        months:3={
+            type:"Lunch"=[{
+                id:'1',
+                time:1
+            },
+            {
+                id:'2',
+                time:2
+            },
+            {
+                id:'3',
+                time:'both'
+            }
+        ],
+        },
+        
         name:'The Lunch box',
         desc:'Description 1 It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like',
         address:'Ghodasar, Ahemedabad',

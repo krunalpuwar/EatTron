@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View ,FlatList,Image,TouchableOpacity} from 'react-native'
 import React from 'react'
 import shoplist from '../asset/data/shopslist'
-// import AntDesign from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useNavigation } from '@react-navigation/native'
 
 
@@ -20,7 +20,7 @@ const Shoplist = () => {
                 <View style={{margin:6}}>
                     <Text style={{color:'#eee',fontSize:18,fontWeight:'bold',marginHorizontal:6}}>{item.name}</Text>
                     <View style={{flexDirection:'row',alignItems:'center'}}>
-                        {/* <AntDesign name='star' size={19} style={{marginRight:4}} /> */}
+                        <AntDesign name='star' size={19} style={{marginRight:4}} />
                         <Text style={{color:'#eee',marginRight:6}}>{item.rating}</Text>
                         <Text style={{color:'#eee',marginHorizontal:6}}>{item.time}</Text>
                         <Text style={{color:'#eee',marginHorizontal:6}}>₹{item.offerprice}</Text>

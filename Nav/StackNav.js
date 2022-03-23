@@ -11,6 +11,8 @@ import Profile from '../screens/Profile';
 import ContactPage from '../screens/ContactPage';
 import Login from '../screens/Login';
 import OtpPage from '../screens/OtpPage';
+import UpdateContact from '../screens/UpdateContact';
+import Payment from '../screens/Payment';
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +30,10 @@ const StackNav = () => {
           <Stack.Screen name='MyCart' component={MyCart} options={{headerShown:!true}} />
           <Stack.Screen name='Profile' component={Profile} options={{headerShown:!true}} />
           <Stack.Screen name='ContactPage' component={ContactPage} options={{headerShown:!true}} />
+          <Stack.Screen name='UpdateContact' component={UpdateContact} options={{headerShown:!true}} />
+          <Stack.Screen name='Payment' component={Payment} options={{headerShown:!true}} />
+
+
           
      </Stack.Navigator>
   )

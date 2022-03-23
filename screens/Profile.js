@@ -76,7 +76,7 @@ const Profile = () => {
 
             <View style={styles.btn_container}>
 
-              <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('update')}>
+              <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('UpdateContact')}>
                 <Text style={styles.btn_txt}>Edit Profile</Text>
               </TouchableOpacity>
 

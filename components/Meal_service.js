@@ -3,7 +3,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import meal from '../asset/img/meal.png';
 
-// import AntDesign from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 const Meal_service = () => {
@@ -12,26 +12,14 @@ const Meal_service = () => {
 
   return (
     <View style={styles.Two}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('SelectMonths')} style={styles.card}>
         <ImageBackground
           source={meal}
-          style={{padding: 19, borderWidth: 5, borderColor: 'green'}}>
-          <Text style={{fontSize: 20, fontWeight: 'bold'}}>Food Service</Text>
+          style={{padding: 19}}>
+          <Text style={{fontSize: 20, fontWeight: '700',textTransform:'uppercase'}}>Tiffin Service</Text>
           <Text style={{fontSize: 15}}>
             View All
-            {/* <AntDesign name="right" size={19} /> */}
-          </Text>
-        </ImageBackground>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate('SelectMonths')}>
-        <ImageBackground
-          source={meal}
-          style={{padding: 19, borderWidth: 5, borderColor: 'green'}}>
-          <Text style={{fontSize: 20, fontWeight: '700'}}>Tiffin Service</Text>
-          <Text style={{fontSize: 15}}>
-            View All
-            {/* <AntDesign name="right" size={19} /> */}
+            <AntDesign name="right" size={19} />
           </Text>
         </ImageBackground>
       </TouchableOpacity>
@@ -43,9 +31,20 @@ export default Meal_service;
 
 const styles = StyleSheet.create({
     Two: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
         marginHorizontal: 10,
         marginVertical: 10,
+      },
+      card: {
+        backgroundColor: 'rgb(255,255,255)',
+        borderRadius: 10,
+        padding: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
       },
 });

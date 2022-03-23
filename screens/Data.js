@@ -2,14 +2,13 @@ import { StyleSheet, Text, View,Image ,TouchableOpacity,FlatList,ScrollView,Dime
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import bestseller from '../asset/data/Bestseller';
-// import AntDesign from 'react-native-vector-icons/AntDesign';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 const Data = ({route}) => {
 
   const {item} = route.params;
     
-
     const navigation = useNavigation();
 
     const DisplayDeals = ({item}) => {
@@ -30,7 +29,7 @@ const Data = ({route}) => {
                   <Text style={{color: 'black', fontSize: 20}}>{item.title}</Text>
                   <Text style={{color: 'black', fontSize: 14}}>{item.des}</Text>
                   <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
-                    {item.mrp}
+                  ₹ {item.mrp}
                   </Text>
                 </View>
     
@@ -45,11 +44,11 @@ const Data = ({route}) => {
    
    <View>
        <View style={styles.back_btn}>
-       {/* <AntDesign
+       <AntDesign
           name="left"
           size={19}
           onPress={() => navigation.goBack()}
-        /> */}
+        />
        </View>
     <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',backgroundColor:'green',padding:19}}>
         <Image source={item.img} style={{width:100,height:100}} />
@@ -95,13 +94,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: 'white',
         justifyContent: 'space-around',
-        height: 120,
-        width: '90%',
         marginHorizontal: 20,
         marginVertical: 10,
-        borderRadius: 10,
-        borderColor: 'black',
-        borderWidth: 0.5,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        padding: 10,
+
       },
       back_btn: {
         alignItems: 'flex-start',

@@ -6,25 +6,28 @@ import {
     StyleSheet,
     ToastAndroid,
   } from 'react-native';
-  import React from 'react';
+  import React ,{useState} from 'react';
   
   import firestore from '@react-native-firebase/firestore';
   
   
-//   import AntDesign from 'react-native-vector-icons/AntDesign';
+  import AntDesign from 'react-native-vector-icons/AntDesign';
   
   export default function Details({route, navigation}) {
-    
+
     const {item} = route.params;
-  
+    
     const ProductId = item.id;
     const prodTitle = item.title;
     const prodDec = item.dec;
     const prodMrp = item.mrp;
     const prodRating = item.rating;
     const prodImg = item.img;
-  
-  
+    
+    const [count,setCount] = useState(1);
+    const [price,setPrice] = useState(prodMrp);
+
+ 
     const add = async() => {
   
           await firestore()
@@ -34,7 +37,7 @@ import {
             ProductId: ProductId,
             ProductName:prodTitle,
             ProductDec:prodDec,
-            ProductMrp:prodMrp,
+            ProductMrp:price,
             ProductRating:prodRating,
             ProductImg:prodImg,
             createdAt:firestore.FieldValue.serverTimestamp()
@@ -51,12 +54,12 @@ import {
     return (
       <View>
         <View style={styles.back_btn}>
-          {/* <AntDesign
+          <AntDesign
             name="left"
             size={19}
             color="black"
             onPress={() => navigation.navigate('Home')}
-          /> */}
+          />
         </View>
   
         <Image source={item.img} style={styles.Main_img} />
@@ -68,11 +71,42 @@ import {
             <Text style={styles.desc_details}>{item.dec}</Text>
   
             <View style={styles.price_rating_wrapper}>
-              <Text style={styles.price}>{item.mrp}</Text>
+              <Text style={styles.price}>₹ {price}</Text>
               <Text style={styles.rating}>
-                {/* <AntDesign name="star" size={20} color="black" /> */}
+                <AntDesign name="star" size={20} color="black" />
                 {item.rating}
               </Text>
+
+              <View style={{flexDirection:'row'}}>
+                <TouchableOpacity
+                 style={styles.count_btn}
+                 onPress={() => {
+                   if(count>1){
+                    setCount(count-1)
+                    setPrice(price-item.mrp)
+                  }
+                  else{
+                    setCount(1)
+                    alert(0)
+                    setPrice(price)
+                    
+                  }
+                }}
+                >
+                  <Text style={{color:"black"}}>-</Text>
+                </TouchableOpacity>
+                    <Text style={styles.count_btn}>{count}</Text>
+                <TouchableOpacity 
+                 style={styles.count_btn}
+                 onPress={() => {
+                  setCount(count+1)
+                  setPrice(price+item.mrp)
+                  
+                }}>
+                  <Text style={{color:'black'}}>+</Text>
+                </TouchableOpacity>
+              </View>
+
             </View>
             
             <TouchableOpacity onPress={add} style={styles.addtocart}>
@@ -154,5 +188,12 @@ import {
       marginHorizontal: 20,
       marginVertical: 10,
     },
+    count_btn:{
+      backgroundColor:'#f2f2f2',
+      justifyContent:'center',
+      alignItems:'center',
+      paddingHorizontal:9,
+      color:'black',
+    }
   });
   

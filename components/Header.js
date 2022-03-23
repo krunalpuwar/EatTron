@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React,{useEffect} from 'react'
 import logo from '../asset/img/person.png'
 import { useNavigation } from '@react-navigation/native'
-// import AntDesign from "react-native-vector-icons/AntDesign"
+import AntDesign from "react-native-vector-icons/AntDesign"
 
 
 export default function Header() {
@@ -34,9 +34,8 @@ export default function Header() {
           <Text style={{color:'black',fontSize:15}}>Hello,{'\n'}<Text style={{fontWeight:'bold'}}>Krunal</Text></Text>  
           <View style={{flexDirection:'row',alignItems:'center'}}>
          
-            <TouchableOpacity onPress={() => navigation.navigate('MyCart')} style={{marginHorizontal:19}}>
-             {/* <AntDesign name="search1" size={29} color="#e8e8e8" style={{margin:6,color:'black'}} /> */}
-             <Text style={{color:'black'}}>Cart</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('MyCart')}>
+             <AntDesign name="shoppingcart" size={29} color="#e8e8e8" style={{margin:6,color:'black'}} />
              </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
