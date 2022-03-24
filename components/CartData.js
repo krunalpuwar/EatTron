@@ -22,7 +22,6 @@ const CartData = ({item,index,onDelete}) => {
         <Text style={{fontSize:12,fontWeight:'bold'}}>{item.ProductDec.substr(0,40)}</Text>
          <View style={{flexDirection:'row',justifyContent:'space-around'}}>
            <Text style={{fontSize:12,fontWeight:'bold'}}>₹ {item.ProductMrp}</Text>
-           <Text style={{fontSize:12,fontWeight:'bold'}}>{item.ProductRating}</Text>
         </View>
         <TouchableOpacity style={{
           backgroundColor:'#f2f2f2',

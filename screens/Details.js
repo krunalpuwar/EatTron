@@ -26,6 +26,7 @@ import {
     
     const [count,setCount] = useState(1);
     const [price,setPrice] = useState(prodMrp);
+    const [click,setClick] = useState(false);
 
  
     const add = async() => {
@@ -45,10 +46,25 @@ import {
           .then(() => {
             console.log('Product added!');
             ToastAndroid.show('Your Data Added Successfully', ToastAndroid.SHORT);
-            navigation.navigate('Home');
+            // navigation.navigate('Home');
+            setClick(true);
           })
           .catch((e) => console.log("Problem"))
-        
+        }
+        const remove = (ID) => {
+          
+          console.log('Data ID IS: ' + ID);
+          
+          firestore()
+          .collection('AddToCart')
+          .doc(ID)
+          
+          .delete()
+          .then(() => alert('Deleted'),
+             setClick(false)
+          )
+        .catch(console.log('Error'));
+
         }
   
     return (
@@ -108,10 +124,18 @@ import {
               </View>
 
             </View>
+            {
+              click == false ?
             
             <TouchableOpacity onPress={add} style={styles.addtocart}>
               <Text style={styles.addtocart_txt}>Add To Cart</Text>
             </TouchableOpacity>
+            :
+            <TouchableOpacity onPress={() => remove(item.id)} style={styles.remove}>
+              <Text style={styles.addtocart_txt}>Remove</Text>
+            </TouchableOpacity>
+            
+            }
             
           </View>
         </View>
@@ -173,6 +197,14 @@ import {
     addtocart: {
       marginTop: 20,
       backgroundColor: '#5e92eb',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 30,
+      borderRadius: 20,
+    },
+    remove:{
+      marginTop: 20,
+      backgroundColor: '#d41111',
       justifyContent: 'center',
       alignItems: 'center',
       height: 30,

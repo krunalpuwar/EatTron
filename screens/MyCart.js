@@ -8,7 +8,7 @@ import {
   } from 'react-native';
   import React, {useEffect, useState} from 'react';
   import firestore from '@react-native-firebase/firestore';
-//   import AntDesign from 'react-native-vector-icons/AntDesign';
+  import AntDesign from 'react-native-vector-icons/AntDesign';
   import CartData from '../components/CartData';
 import { useNavigation } from '@react-navigation/native';
   

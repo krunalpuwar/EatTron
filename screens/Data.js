@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         marginHorizontal: 20,
         marginVertical: 10,
+        
         shadowColor: '#000',
         shadowOffset: {
           width: 0,
