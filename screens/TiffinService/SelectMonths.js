@@ -1,35 +1,56 @@
-import { StyleSheet, Text, View,TouchableOpacity,ImageBackground} from 'react-native'
-import React from 'react'
-import bg from '../../assets/img/background.png'
+import { StyleSheet, Text, View,TouchableOpacity,ImageBackground,FlatList} from 'react-native'
+import React ,{useState} from 'react'
+import bg from '../../asset/img/background.png'
 import { useNavigation } from '@react-navigation/native';
-
+import firestore from '@react-native-firebase/firestore';
+import Data from '../../asset/data/Data' 
 
 const SelectMonths = () => {
     const navigation = useNavigation();
+    const [mon,setMon] = useState(null);
+
+    const add = async() => {
+
+        setMon()
+
+        await firestore()
+        .collection('TiffinService')
+        .doc("Tiffin")
+        .set({
+            
+            Months:mon
+        })
+        .then(() => {
+          console.log('Product added!');
+          navigation.navigate('SelectTime',{mon:mon});
+        })
+        .catch((e) => console.log("Problem"))
+      }
+      
+
+
   return (
     <ImageBackground source={bg} style={{flex:1,alignItems:'center'}}>
 
         <Text style={styles.heading}>Select Months</Text>
-        
         <View>
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('SelectTime')} >
-                <Text style={styles.month}>3 Months</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('SelectTime')}>
-                <Text style={styles.month}>6 Months</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('SelectTime')}>
-                <Text style={styles.month}>12 Months</Text>
-            </TouchableOpacity>
+            <FlatList
+                data={Data}
+                renderItem={({item}) => (<>
+                    <TouchableOpacity style={styles.btn} onPress={add}>
+                        <Text style={styles.month}>{item.months}</Text>
+                    </TouchableOpacity>
+            </>
+                )}
+                keyExtractor={item => item.id}
+            />
         </View>
     </ImageBackground>
 
   )
 }
 
-export default SelectMonths
+export default SelectMonths;
 
 const styles = StyleSheet.create({
     heading:{

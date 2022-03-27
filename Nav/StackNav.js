@@ -17,6 +17,8 @@ import TiffinService_Months from '../screens/TiffinService/TiffinService_Months'
 import TiffinDeal from '../screens/TiffinService/TiffinDeal';
 import Tiffin_info from '../screens/TiffinService/Tiffin_Info';
 import PaymentCart from '../screens/PaymentCart';
+import SelectMonths from '../screens/TiffinService/SelectMonths';
+import SelectTime from '../screens/TiffinService/SelectTime';
 
 
 const Stack = createNativeStackNavigator();
@@ -40,9 +42,8 @@ const StackNav = () => {
           <Stack.Screen name='TiffinDeal' component={TiffinDeal} options={{headerShown:!true}} />
           <Stack.Screen name='Tiffin_info' component={Tiffin_info} options={{headerShown:!true}} />
           <Stack.Screen name='PaymentCart' component={PaymentCart} options={{headerShown:!true}} />
-
-
-
+          <Stack.Screen name='SelectMonths' component={SelectMonths} options={{headerShown:!true}} />
+          <Stack.Screen name='SelectTime' component={SelectTime} options={{headerShown:!true}} />
           
      </Stack.Navigator>
   )

@@ -12,7 +12,7 @@ const Meal_service = () => {
 
   return (
     <View style={styles.Two}>
-      <TouchableOpacity onPress={() => navigation.navigate('TiffinDeal')} style={styles.card}>
+      <TouchableOpacity onPress={() => navigation.navigate('SelectMonths')} style={styles.card}>
         <ImageBackground
           source={meal}
           style={{padding: 19}}>

@@ -1,17 +1,42 @@
 import { StyleSheet, Text, View,TouchableOpacity ,ImageBackground} from 'react-native'
-import React from 'react'
-import bg from '../../assets/img/background.png'
+import React,{useState} from 'react'
+import bg from '../../asset/img/background.png'
 import { useNavigation } from '@react-navigation/native';
+import firestore from '@react-native-firebase/firestore';
 
 
-const SelectTime = () => {
+const SelectTime = ({route}) => {
     const navigation = useNavigation();
+
+    const mon = route.params;
+
+    const [mon1,setMon1] = useState(null);
+
+    const add = async() => {
+
+        setMon1('Both')
+
+        await firestore()
+        .collection('TiffinService')
+        .doc("Tiffin")
+        .set({
+            Duration:mon,
+            Time:mon1,
+        })
+        .then(() => {
+          console.log('Product added!');
+          navigation.navigate('TiffinDeal');
+        })
+        .catch((e) => console.log("Problem"))
+      }
+
+
   return (
     <ImageBackground source={bg} style={{flex:1,alignItems:'center'}}>
     <Text style={styles.heading}>Select Months</Text>
     
     <View>
-        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Meals')} >
+        <TouchableOpacity style={styles.btn} onPress={add} >
             <Text style={styles.month}>Lunch</Text>
         </TouchableOpacity>
 

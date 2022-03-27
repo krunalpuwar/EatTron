@@ -8,6 +8,7 @@ const bestseller = [
         dec:'This is 1 top selling product this jvo jv eo ropjfp evnoenvm amslm ceovpmow evpojwe vwenvw epvjv jvj wevpw pervwp jervjpwejvpwevj wevwerv ',
         rating:'4.5/5',
         isAvailable:true,
+        categories:'Pizza'
     },
     {
         id:2,
@@ -18,6 +19,7 @@ const bestseller = [
         dec:'This is 2 top selling product this jvo jv eo ropjfp evnoenvm amslm ceovpmow evpojwe vwenvw epvjv jvj wevpw pervwp jervjpwejvpwevj wevwerv ',
         rating:'4.5/5',
         isAvailable:true,
+        categories:'Pizza'
     },
     {
         id:3,
@@ -28,6 +30,7 @@ const bestseller = [
         dec:'This is 3 top selling product this jvo jv eo ropjfp evnoenvm amslm ceovpmow evpojwe vwenvw epvjv jvj wevpw pervwp jervjpwejvpwevj wevwerv ',
         rating:'4.5/5',
         isAvailable:true,
+        categories:'Pizza'
     },
     {
         id:4,
@@ -47,6 +50,7 @@ const bestseller = [
         dec:'This is 5 top selling product this jvo jv eo ropjfp evnoenvm amslm ceovpmow evpojwe vwenvw epvjv jvj wevpw pervwp jervjpwejvpwevj wevwerv ',
         rating:'4.5/5',
         isAvailable:true,
+        categories:'Pizza'
     },
     {
         id:6,
@@ -57,6 +61,7 @@ const bestseller = [
         dec:'This is 6 top selling product this jvo jv eo ropjfp evnoenvm amslm ceovpmow evpojwe vwenvw epvjv jvj wevpw pervwp jervjpwejvpwevj wevwerv ',
         rating:'4.5/5',
         isAvailable:true,
+        categories:'Pizza'
     },
 
 ]

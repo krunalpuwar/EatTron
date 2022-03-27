@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <View style={{backgroundColor:'rgb(255, 255, 255)'}}>
-      <StatusBar />
+      <StatusBar backgroundColor={'rgb(255,255,255)'} barStyle='dark-content' />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <Header />
