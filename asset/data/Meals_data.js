@@ -26,7 +26,8 @@ const meal_data =[
         Sunday: Rice ,Chapati ,Sabji & Dal fry
 
         `,
-        price:'2200',
+        month:[ three=3, six=6,twelve=12],
+        price:[three_mon=2200,six_mon=3000,twelve_mon=4000],
     },
     {
         name:'The Lunch box',

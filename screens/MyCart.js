@@ -49,7 +49,7 @@ import { useNavigation } from '@react-navigation/native';
   
     setTimeout(() => {
       GetData();
-    }, 1000);
+    }, );
   
     const [Pro, setPro] = useState(null);
     
