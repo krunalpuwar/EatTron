@@ -12,11 +12,13 @@ import {
   import CartData from '../components/CartData';
 import { useNavigation } from '@react-navigation/native';
   
-  const MyCart = () => {
-    const [setdata, newdata] = useState(null);
-    const navigation = useNavigation();
-
+const MyCart = () => {
+  const [setdata, newdata] = useState(null);
+  const navigation = useNavigation();
   
+  const [Pro, setPro] = useState(null);
+
+    
   
     const deletepost = ID => {
       console.log('Data ID IS: ' + ID);
@@ -51,8 +53,6 @@ import { useNavigation } from '@react-navigation/native';
       GetData();
     }, );
   
-    const [Pro, setPro] = useState(null);
-    
   
     const GetData = async () => {
       var list = [];
@@ -73,8 +73,14 @@ import { useNavigation } from '@react-navigation/native';
           ProductMrp: ProductMrp,
         });
       });
-  
+      
+      // const namesArr = Pro.filter(function(elem, pos) {
+      //   return Pro.indexOf(elem) == pos;
+      // });
+      // console.log(namesArr);
+      
       setPro(list);
+
     };
   
     return (
@@ -110,9 +116,7 @@ import { useNavigation } from '@react-navigation/native';
           <Text style={{textAlign:'center'}}>
               Total Cart Value Is :  ₹ {Pro.reduce((acc, item) => acc + item.ProductMrp, 0)}
            </Text>
-           <TouchableOpacity style={{backgroundColor:'black',padding:9}} onPress={() => navigation.navigate('Payment',{
-             Pro:Pro
-           })}>
+           <TouchableOpacity style={{backgroundColor:'black',padding:9}}>
             <Text style={{textAlign:'center'}}>Make Payment</Text>
             </TouchableOpacity>
 

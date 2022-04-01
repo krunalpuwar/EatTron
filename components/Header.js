@@ -3,6 +3,7 @@ import React,{useEffect} from 'react'
 import logo from '../asset/img/person.png'
 import { useNavigation } from '@react-navigation/native'
 import AntDesign from "react-native-vector-icons/AntDesign"
+import { Badge } from 'react-native-paper'
 
 
 export default function Header() {
@@ -36,6 +37,7 @@ export default function Header() {
          
             <TouchableOpacity onPress={() => navigation.navigate('MyCart')}>
              <AntDesign name="shoppingcart" size={29} color="#e8e8e8" style={{margin:6,color:'black'}} />
+             <Badge style={{position:'absolute'}}>3</Badge>
              </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('Profile')}>

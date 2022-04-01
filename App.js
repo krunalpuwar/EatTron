@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React from 'react'
 import StackNav from './Nav/StackNav'
 import { NavigationContainer } from '@react-navigation/native'

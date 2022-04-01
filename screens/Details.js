@@ -1,3 +1,4 @@
+import React ,{useState,useEffect} from 'react';
 import {
     View,
     Text,
@@ -7,10 +8,11 @@ import {
     ToastAndroid,
   } from 'react-native';
 
+  // Components
   import { Styles } from '../components/Style/Style';
   import {Colors} from '../components/Style/Colors';
 
-  import React ,{useState} from 'react';
+  // Icons
   import firestore from '@react-native-firebase/firestore';
   import AntDesign from 'react-native-vector-icons/AntDesign';
   import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -26,55 +28,76 @@ import {
 
     const {item} = route.params;
     
-    const ProductId = item.id;
+    const Productid = item.id;
     const prodTitle = item.title;
     const prodDec = item.dec;
     const prodMrp = item.mrp;
     const prodRating = item.rating;
     const prodImg = item.img;
+    const Count = count;
+
+    
     
     const [count,setCount] = useState(1);
     const [price,setPrice] = useState(prodMrp);
-    const [click,setClick] = useState(false);
+    
+    const [cdata,setCdata] = useState([]);
 
- 
+    useEffect(() => {
+        getdata();
+      },[])
+
     const add = async() => {
   
           await firestore()
           .collection('AddToCart')
           .doc()
           .set({
-            ProductId: ProductId,
+            ProductId: Productid,
             ProductName:prodTitle,
             ProductDec:prodDec,
             ProductMrp:price,
             ProductRating:prodRating,
             ProductImg:prodImg,
+            Count : count,
             createdAt:firestore.FieldValue.serverTimestamp()
           })
+      
+
           .then(() => {
             console.log('Product added!');
             ToastAndroid.show('Your Data Added Successfully', ToastAndroid.SHORT);
-            setClick(true);
+            navigation.navigate('MyCart');
           })
           .catch((e) => console.log("Problem"))
         }
-        const remove = (ID) => {
-          
-          console.log('Data ID IS: ' + ID);
-          
-          firestore()
-          .collection('AddToCart')
-          .doc(ID)
-          
-          .delete()
-          .then(() => alert('Deleted'),
-             setClick(false)
-          )
-        .catch(console.log('Error'));
+    
+        // GET DATA
 
+     const getdata = () => {
+
+           firestore()
+          .collection('AddToCart')
+          .get()
+          .then(snapshot => {
+            if (snapshot.empty) {
+              console.log('No matching documents.');
+              return;
+            }
+            snapshot.forEach(doc => {
+              // console.log(doc.id, '=>', doc.data());
+              const {Count,ProductName,ProductId} = doc.data();
+              const ID = doc.id;
+              setCdata(ProductId  );
+
+            });
+          })
+          .catch(err => {
+            console.log('Error getting documents', err);
+          });
         }
-  
+
+
     return (
       <View style={{flex:1,backgroundColor:Colors.snow}}>
         <View style={styles.header}>
@@ -139,7 +162,7 @@ import {
                   <Text style={{color:Colors.snow,fontSize:19}}>+</Text>
                 </TouchableOpacity>
               </View>
-
+  
 
                   <View style={{alignItems:'center',marginTop:-50,marginBottom:19}}>
                     <Text style={Styles.title}>{item.title}</Text>
@@ -155,8 +178,6 @@ import {
                  </View>
                    
                    
-                   
-                    {/* BTN */}
                     <View style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}>
                       <View style={Styles.detail_show_btn}>
                         <Ionicons
@@ -191,69 +212,37 @@ import {
                       </View>
                   </View>
 
-                  {
-              click == false ?
-           
+                    {console.log(cdata)}
 
-            <TouchableOpacity onPress={add} style={Styles.addtocart}>
-                <SimpleLineIcons
-                  name="handbag"
-                  size={19}
-                  color='black'
-                  onPress={() => navigation.navigate('Home')}
-                  style={Styles.btn_bg}
-                />
-              <Text style={Styles.addtocart_txt}>Add To Cart</Text>
-              <AntDesign
-                  name="right"
-                  size={19}
-                  color='black'
-                  onPress={() => navigation.navigate('Home')}
-                />
-            </TouchableOpacity>
-            :
-            <TouchableOpacity onPress={() => remove(item.id)} style={Styles.remove}>
-                <AntDesign
-                  name="delete"
-                  size={19}
-                  color='black'
-                  onPress={() => navigation.navigate('Home')}
-                  style={Styles.btn_bg}
-                />
-              <Text style={Styles.addtocart_txt}>Remove</Text>
-              <AntDesign
-                  name="right"
-                  size={19}
-                  color='black'
-                  onPress={() => navigation.navigate('Home')}
-                />
-            </TouchableOpacity>
+            {
+              cdata.ID == cdata.ID ?(
             
-            }
-
-
-
-{/*         
-        <View style={Styles.main_wrapper}>
-          <View style={{marginHorizontal: 20}}>
+                    <TouchableOpacity onPress={add} style={Styles.addtocart}>
+                  <SimpleLineIcons
+                      name="handbag"
+                      size={19}
+                      color='black'
+                      style={Styles.btn_bg}
+                      />
+                  <Text style={Styles.addtocart_txt}>Add To Cart</Text>
+                  <AntDesign
+                      name="right"
+                      size={19}
+                      color='black'
+                      />
+                </TouchableOpacity>
+                 ):
+                 <Text style={{
+                   color:'black',
+                 }}> Data Nathi Joyleje </Text>
+               
+              }
+            
+             
+           
         
-            <Text style={Styles.title}>{item.title}</Text>
-            <Text style={Styles.desc_details}>{item.dec}</Text>
-  
-            <View style={Styles.price_rating_wrapper}>
-              <Text style={Styles.price}>₹ {price}</Text>
-              <Text style={Styles.rating}>
-                <AntDesign name="star" size={20} color="black" />
-                {item.rating}
-              </Text>
 
-              
 
-            </View>
-           
-            
-          </View>
-        </View> */}
       </View>
     );
   }

@@ -5,9 +5,8 @@ import bestseller from '../asset/data/Bestseller';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
-const Data = ({route}) => {
+const Data = () => {
 
-  const {item} = route.params;
     
     const navigation = useNavigation();
 
@@ -43,33 +42,7 @@ const Data = ({route}) => {
   return (
    
    <View>
-       <View style={styles.back_btn}>
-       <AntDesign
-          name="left"
-          size={19}
-          onPress={() => navigation.goBack()}
-        />
-       </View>
-    <View style={{flexDirection:'row',justifyContent:'space-around',alignItems:'center',backgroundColor:'green',padding:19}}>
-        <Image source={item.img} style={{width:100,height:100}} />
-        <View style={{flexWrap:'wrap'}}>
-            <Text style={{fontWeight:'bold',fontSize:18}}>{item.name}</Text>
-            <Text>{item.dec}</Text>
-        </View>
-    </View>
-
-    <ScrollView style={{
-        marginBottom:"auto"
-    }}>
-        <Text
-         style={{
-             fontWeight:'bold',
-             fontSize:19,
-             marginHorizontal:19,
-             padding:6,
-             color:'black'
-         }}
-        >Menu</Text>
+       <ScrollView showsVerticalScrollIndicator={false}>
     <FlatList
       data={bestseller}
       renderItem={DisplayDeals}

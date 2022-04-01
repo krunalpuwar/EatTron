@@ -1,20 +1,31 @@
 import { StyleSheet, Text, View,Image,TouchableOpacity,FlatList} from 'react-native'
 import React,{useState} from 'react'
-import { Searchbar } from 'react-native-paper';
+import { Searchbar, TextInput } from 'react-native-paper';
 import { Styles } from '../../components/Style/Style';
 import logo from '../../asset/img/person.png'
 import { useNavigation } from '@react-navigation/native'
 import AntDesign from "react-native-vector-icons/AntDesign"
 import meal_data from '../../asset/data/Meals_data';
 
-const TiffinHome = () => {
-  
+
+const TiffinHome = () => {  
     const navigation = useNavigation();
-    const[search,setSearch] = useState('');
+    const [data,setData] = useState(meal_data);
+
+    const searchdata = (text) => {
+        if(text == ''){
+            setData(meal_data);
+        }else{
+            const newdata = meal_data.filter(item => item.name.toLowerCase().includes(text.toLowerCase()));
+            setData(newdata);
+        }
+    }
+    
+
   
-    const CardData =  ({item}) => {
+    const CardData =  ({item,index}) => {
         return(
-            <TouchableOpacity style={Styles.meal_card} onPress={() => navigation.navigate('TiffinDetails',{
+            <TouchableOpacity key={index} style={Styles.meal_card} onPress={() => navigation.navigate('TiffinDetails',{
                 item: item,
               })}>
                 <View>
@@ -56,19 +67,19 @@ const TiffinHome = () => {
             <View >
             <Searchbar
                 placeholder="Search"
-                value={search}
-                onChangeText={txt => setSearch(txt)}
+                onChangeText={(txt)=> {
+                    searchdata(txt)
+                }}
                 placeholderTextColor='black'
                 />
             </View>
         </View>
 
 
-            <FlatList
-            data={meal_data}
-            renderItem={CardData}
-            keyExtractor={item => item.id}
-
+             <FlatList
+                data={data}
+                renderItem={CardData}
+                keyExtractor={item => item.id}
             />
 
 

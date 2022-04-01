@@ -228,6 +228,7 @@ export const Styles = StyleSheet.create({
       },
 
       //TiffinHome
+      
       header:{
         height:'auto',
         width:'100%',

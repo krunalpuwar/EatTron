@@ -12,16 +12,16 @@ import Categories from '../components/Categories';
 import Slider from '../components/Slider';
 import Header from '../components/Header';
 import Meal_service from '../components/Meal_service';
-import Shoplist from '../components/Shoplist';
-import Top_Picks from '../components/Top_Picks';
+import Data from './Data'
+import { Colors } from '../components/Style/Colors';
 
 
 const Home = () => {
  
 
   return (
-    <View style={{backgroundColor:'rgb(255, 255, 255)'}}>
-      <StatusBar backgroundColor={'rgb(255,255,255)'} barStyle='dark-content' />
+    <View style={{backgroundColor:Colors.snow}}>
+      <StatusBar backgroundColor={Colors.snow} barStyle='dark-content' />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
         <Header />
@@ -35,11 +35,6 @@ const Home = () => {
         {/* categories */}
         <Categories />
 
-        {/* Top Picks */}
-        <Top_Picks />
-
-          {/* Shop List */}
-          <Shoplist />
 
       </ScrollView>
     </View>

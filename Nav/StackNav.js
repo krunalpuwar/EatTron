@@ -3,7 +3,6 @@ import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 //custom Components
-import Home from '../screens/Home';
 import Data from '../screens/Data';
 import Details from '../screens/Details';
 import MyCart from '../screens/MyCart';
@@ -13,12 +12,11 @@ import Login from '../screens/Login';
 import OtpPage from '../screens/OtpPage';
 import UpdateContact from '../screens/UpdateContact';
 import Payment from '../screens/Payment';
-import TiffinDeal from '../screens/TiffinService/TiffinDeal';
-import Tiffin_info from '../screens/TiffinService/Tiffin_Info';
 import PaymentCart from '../screens/PaymentCart';
 import TiffinHome from '../screens/TiffinPage/TiffinHome';
 import TiffinDetails from '../screens/TiffinPage/TiffinDetails';
 import TiffinPayment from '../screens/TiffinPage/TiffinPayment';
+import Tabbars from './Tabbars';
 
 
 const Stack = createNativeStackNavigator();
@@ -30,7 +28,7 @@ const StackNav = () => {
     <Stack.Navigator>
           <Stack.Screen name='Login' component={Login} options={{headerShown:!true}} />
           <Stack.Screen name='OtpPage' component={OtpPage} options={{headerShown:!true}} />
-          <Stack.Screen name='Home' component={Home} options={{headerShown:!true}} />
+          <Stack.Screen name='Home' component={Tabbars} options={{headerShown:!true}} />
           <Stack.Screen name="Data" component={Data}  options={{headerTintColor:'black',headerShown:!true}} />
           <Stack.Screen name='Details' component={Details} options={{headerShown:!true}} />
           <Stack.Screen name='MyCart' component={MyCart} options={{headerShown:true}} />
@@ -39,8 +37,6 @@ const StackNav = () => {
           <Stack.Screen name='UpdateContact' component={UpdateContact} options={{headerShown:!true}} />
           <Stack.Screen name='Payment' component={Payment} options={{headerShown:!true}} />
           <Stack.Screen name='TiffinPayment' component={TiffinPayment} options={{headerShown:!true}} />
-          <Stack.Screen name='TiffinDeal' component={TiffinDeal} options={{headerShown:!true}} />
-          <Stack.Screen name='Tiffin_info' component={Tiffin_info} options={{headerShown:!true}} />
           <Stack.Screen name='PaymentCart' component={PaymentCart} options={{headerShown:!true}} />
           <Stack.Screen name='TiffinHome' component={TiffinHome} options={{headerShown:!true}} />
           <Stack.Screen name='TiffinDetails' component={TiffinDetails} options={{headerShown:!true}} />
