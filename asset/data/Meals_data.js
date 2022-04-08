@@ -24,7 +24,6 @@ const meal_data =[
         Friday: Rice ,Chapati ,Sabji & Dal Makhni \n
         Saturday: Rice ,Chapati ,Sabji & Kale Chole \n
         Sunday: Rice ,Chapati ,Sabji & Dal fry
-
         `,
         month:[ three=3, six=6,twelve=12],
         price:[three_mon=2200,six_mon=3000,twelve_mon=4000],

@@ -13,6 +13,7 @@ import {
   import main from '../asset/img/main.png';
   
   const OtpPage = ({navigation, route}) => {
+
     const {num} = route.params;
   
     const [initializing, setInitializing] = useState(true);
@@ -24,17 +25,6 @@ import {
     
     useEffect(() => {
       signInWithPhoneNumber();
-  
-      const unsubscribe = auth().onAuthStateChanged(users => {
-        if (users) {
-          navigation.navigate('Home');
-          setUser(users);
-          if (initializing) setInitializing(false);
-          console.log(user)
-        }
-      })
-        return unsubscribe;
-  
     }, []);
   
   
@@ -52,7 +42,7 @@ import {
       try {
         const res = await confirm.confirm(code);
         if (res) {
-          navigation.replace('Home');
+          navigation.replace('ContactPage');
         }
       } catch (error) {
         alert('Invalid code.');

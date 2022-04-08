@@ -10,8 +10,9 @@ const Height = Dimensions.get('window').height;
 
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
+import auth from '@react-native-firebase/auth';
 
-
+// console.log(auth()._user.phoneNumber);
 
 const ContactPage = () => {
 
@@ -23,24 +24,26 @@ const ContactPage = () => {
   const[address,setAddress] = useState('');
   const[Pincode,setPincode] = useState('');
 
-
+  const PhoneNumber = auth()._user.phoneNumber;
+  console.log(PhoneNumber);
 
   const add = async() => {
 
     await firestore()
       .collection('Users')
-      .doc('Contact_details')
+      .doc(PhoneNumber)
       .set({
         Firstname: FirstName,
         Lastname: LName,
         Email: Email,
         Address: address,
-        Pincode: Pincode
+        Pincode: Pincode,
+        PhoneNumber: PhoneNumber,
       })
       .then(() => {
         console.log('User added!');
         ToastAndroid.show('Your Data Added Successfully', ToastAndroid.SHORT);
-        navigation.navigate('Profile');
+        navigation.navigate('Home');
       });
     
     }

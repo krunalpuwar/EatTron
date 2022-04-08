@@ -20,82 +20,71 @@ import {
   import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
   import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
+  import { CartContext } from '../CartContext'
+  import {getProduct} from '../asset/data/categories'
 
 
   
   
   export default function Details({route, navigation}) {
+    
 
-    const {item} = route.params;
+    const { productId } = route.params;
     
-    const Productid = item.id;
-    const prodTitle = item.title;
-    const prodDec = item.dec;
-    const prodMrp = item.mrp;
-    const prodRating = item.rating;
-    const prodImg = item.img;
-    const Count = count;
+    const [product, setProduct] = useState({});
 
-    
-    
-    const [count,setCount] = useState(1);
-    const [price,setPrice] = useState(prodMrp);
-    
-    const [cdata,setCdata] = useState([]);
+    const { addItemToCart } = useContext(CartContext);
 
     useEffect(() => {
-        getdata();
-      },[])
+      setProduct(getProduct(productId));
+    });
 
-    const add = async() => {
+    function onAddToCart() {
+      addItemToCart(product.id);
+    }
+
+
   
-          await firestore()
-          .collection('AddToCart')
-          .doc()
-          .set({
-            ProductId: Productid,
-            ProductName:prodTitle,
-            ProductDec:prodDec,
-            ProductMrp:price,
-            ProductRating:prodRating,
-            ProductImg:prodImg,
-            Count : count,
-            createdAt:firestore.FieldValue.serverTimestamp()
-          })
+
+    // const add = async() => {
+  
+    //       await firestore()
+    //       .collection('AddToCart')
+    //       .doc()
+    //       .set({
+    
+    //           ProductId: Productid,
+    //           ProductName:prodTitle,
+    //           ProductDec:prodDec,
+    //           ProductMrp:price,
+    //           ProductRating:prodRating,
+    //           ProductImg:prodImg,
+    //           Count : count,
+    //           createdAt:firestore.FieldValue.serverTimestamp()
+    //       })
       
 
-          .then(() => {
-            console.log('Product added!');
-            ToastAndroid.show('Your Data Added Successfully', ToastAndroid.SHORT);
-            navigation.navigate('MyCart');
-          })
-          .catch((e) => console.log("Problem"))
-        }
-    
+    //       .then(() => {
+    //         console.log('Product added!');
+    //         ToastAndroid.show('Your Data Added Successfully', ToastAndroid.SHORT);
+    //         navigation.navigate('MyCart');
+    //       })
+    //       .catch((e) => console.log("Problem"))
+    //     }
+        
         // GET DATA
-
-     const getdata = () => {
-
-           firestore()
-          .collection('AddToCart')
-          .get()
-          .then(snapshot => {
-            if (snapshot.empty) {
-              console.log('No matching documents.');
-              return;
-            }
-            snapshot.forEach(doc => {
-              // console.log(doc.id, '=>', doc.data());
-              const {Count,ProductName,ProductId} = doc.data();
-              const ID = doc.id;
-              setCdata(ProductId  );
-
-            });
-          })
-          .catch(err => {
-            console.log('Error getting documents', err);
-          });
-        }
+        
+        
+        // const getdata = async() => {
+        //   await firestore()
+        //   .collection('AddToCart')
+        //   .get()
+        //   .then(querySnapshot => {
+        //     const data = querySnapshot.docs.map(doc => doc.data());
+        //     setCdata(data);
+        //   })
+        //   .catch(e => console.log(e));
+        // }
 
 
     return (
@@ -121,7 +110,7 @@ import {
 
         </View>
   
-        <Image source={item.img} style={Styles.Main_img} />
+        <Image source={data.img} style={Styles.Main_img} />
 
         {/* Price */}
           <View style={Styles.pri}>
@@ -129,14 +118,14 @@ import {
             <Text style={Styles.price}>₹ {price}</Text>
           </View>
 
-            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+            <View style={{flexDirection:'row',aligndatas:'center',justifyContent:'center'}}>
                 
                 <TouchableOpacity
                  style={Styles.count_btn_left}
                  onPress={() => {
                    if(count>1){
                     setCount(count-1)
-                    setPrice(price-item.mrp)
+                    setPrice(price-data.price)
                   }
                   else{
                     setCount(1)
@@ -156,7 +145,7 @@ import {
                  style={Styles.count_btn_right}
                  onPress={() => {
                   setCount(count+1)
-                  setPrice(price+item.mrp)
+                  setPrice(price+data.price)
                   
                 }}>
                   <Text style={{color:Colors.snow,fontSize:19}}>+</Text>
@@ -165,9 +154,9 @@ import {
   
 
                   <View style={{alignItems:'center',marginTop:-50,marginBottom:19}}>
-                    <Text style={Styles.title}>{item.title}</Text>
-                    <View style={{flexDirection:'row',alignItems:'center'}}>
-                    <Text style={Styles.sub_title}>{item.categories}</Text>
+                    <Text style={Styles.title}>{data.title}</Text>
+                    <View style={{flexDirection:'row',aligndatas:'center'}}>
+                    <Text style={Styles.sub_title}>{data.categories}</Text>
                     <FontAwesome5
                           name="pizza-slice"
                           size={19}
@@ -178,7 +167,7 @@ import {
                  </View>
                    
                    
-                    <View style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center'}}>
+                    <View style={{flexDirection:'row',justifyContent:'space-evenly',aligndatas:'center'}}>
                       <View style={Styles.detail_show_btn}>
                         <Ionicons
                           name="alarm"
@@ -215,9 +204,11 @@ import {
                     {console.log(cdata)}
 
             {
-              cdata.ID == cdata.ID ?(
+              
+              
+              cdata.fill( pro => pro.ProductId == Productid )? (
             
-                    <TouchableOpacity onPress={add} style={Styles.addtocart}>
+                <TouchableOpacity onPress={onAddToCart} style={Styles.addtocart}>
                   <SimpleLineIcons
                       name="handbag"
                       size={19}
@@ -238,10 +229,9 @@ import {
                
               }
             
-             
            
         
-
+              
 
       </View>
     );
@@ -250,7 +240,7 @@ import {
   const styles = StyleSheet.create({
     header: {
       flexDirection:'row',
-      alignItems:'center',
+      aligndatas:'center',
       justifyContent:'space-between',
       marginHorizontal:19,
       margin:19

@@ -6,6 +6,7 @@ import logo from '../../asset/img/person.png'
 import { useNavigation } from '@react-navigation/native'
 import AntDesign from "react-native-vector-icons/AntDesign"
 import meal_data from '../../asset/data/Meals_data';
+import { Colors } from '../../components/Style/Colors';
 
 
 const TiffinHome = () => {  
@@ -53,14 +54,31 @@ const TiffinHome = () => {
 
     return (
     <View style={Styles.container}>
+
+        <View style={style.header}>
+          <AntDesign
+            name="left"
+            size={19}
+            color='black'
+            onPress={() => navigation.navigate('Home')}
+            style={Styles.btn_bg}
+          />
+
+          <Text style={{color:'black',fontSize:19,fontWeight:'bold'}}>Tiffin Service</Text>
+
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+             <Image source={logo} style={Styles.logo}  />
+            </TouchableOpacity>
+          </View>
+
         {/* Header */}
         <View style={Styles.header}>
          <View style={{flexDirection:'row',justifyContent:'space-between',padding:9,alignItems:'center'}}>
-            <Text style={Styles.Heading}>Eat-Tron</Text>  
+            {/* <Text style={Styles.Heading}>Eat-Tron</Text>  
 
             <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
              <Image source={logo} style={Styles.logo}  />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
         </View>
            
@@ -93,3 +111,13 @@ const TiffinHome = () => {
 }
 
 export default TiffinHome
+
+const style = StyleSheet.create({
+    header: {
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between',
+        backgroundColor: Colors.lightGreen,
+        padding:19,
+       },
+    })

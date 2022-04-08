@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View ,Image,TouchableOpacity} from 'react-native'
 import React,{useState,useEffect} from 'react'
-import { useNavigation } from '@react-navigation/native';
 
 
 const CartData = ({item,index,onDelete}) => {  

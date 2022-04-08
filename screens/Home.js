@@ -8,12 +8,11 @@ import {
 } from 'react-native';
 
 // custom components
-import Categories from '../components/Categories';
 import Slider from '../components/Slider';
 import Header from '../components/Header';
 import Meal_service from '../components/Meal_service';
-import Data from './Data'
 import { Colors } from '../components/Style/Colors';
+import { ProductsList } from './ProductList';
 
 
 const Home = () => {
@@ -21,6 +20,7 @@ const Home = () => {
 
   return (
     <View style={{backgroundColor:Colors.snow}}>
+      
       <StatusBar backgroundColor={Colors.snow} barStyle='dark-content' />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
@@ -33,8 +33,9 @@ const Home = () => {
         <Meal_service />
 
         {/* categories */}
-        <Categories />
+        {/* <Categories /> */}
 
+          <ProductsList />
 
       </ScrollView>
     </View>

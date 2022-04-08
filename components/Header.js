@@ -1,13 +1,16 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React,{useEffect} from 'react'
+import React,{useEffect,useContext} from 'react'
 import logo from '../asset/img/person.png'
 import { useNavigation } from '@react-navigation/native'
 import AntDesign from "react-native-vector-icons/AntDesign"
 import { Badge } from 'react-native-paper'
+import { CartContext } from '../CartContext';
+
 
 
 export default function Header() {
-
+  
+  const {getItemsCount} = useContext(CartContext);
   const navigation = useNavigation();
   
   useEffect(
@@ -35,9 +38,9 @@ export default function Header() {
           <Text style={{color:'black',fontSize:15}}>Hello,{'\n'}<Text style={{fontWeight:'bold'}}>Krunal</Text></Text>  
           <View style={{flexDirection:'row',alignItems:'center'}}>
          
-            <TouchableOpacity onPress={() => navigation.navigate('MyCart')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
              <AntDesign name="shoppingcart" size={29} color="#e8e8e8" style={{margin:6,color:'black'}} />
-             <Badge style={{position:'absolute'}}>3</Badge>
+             <Badge style={{position:'absolute'}}>{getItemsCount()}</Badge>
              </TouchableOpacity>
 
           <TouchableOpacity onPress={() => navigation.navigate('Profile')}>

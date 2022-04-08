@@ -1,85 +1,90 @@
+import { useNavigation } from '@react-navigation/native';
 import React ,{ useState } from 'react'
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import categories from '../asset/data/Categories';
+import categories from '../asset/data/categories';
 import { Colors } from './Style/Colors';
  
 
 
 
-export default function Categories() {
+export default function Categories({navigation}) {
 
-  const [currentSelected, setCurrentSelected] = useState([0]);
+  
+  // const navigation = useNavigation();
+  // const [currentSelected, setCurrentSelected] = useState([0]);
 
-  const DisplayCategories = ({item,index}) => {
-    return(
-      <>
-        <TouchableOpacity 
-           activeOpacity={0.9}
-           onPress={() => {
-            setCurrentSelected(index)
-        }}> 
-          <View style={[styles.Cat,{backgroundColor:currentSelected === index ? 'green' : 'white'}]} >
-            <Image source={item.Img} style={styles.cat_img} />
-            <Text style={[styles.cat_title,{color:currentSelected === index ? Colors.snow : 'black'}]}>{item.title}</Text>
-          </View>
-        </TouchableOpacity>
-        </>
-      )
-    }
+  // const DisplayCategories = ({item,index}) => {
+  //   return(
+  //     <>
+  //       <TouchableOpacity 
+  //          activeOpacity={0.9}
+  //          onPress={() => {
+  //           setCurrentSelected(index)
+  //       }}> 
+  //         <View style={[styles.Cat,{backgroundColor:currentSelected === index ? 'green' : 'white'}]} >
+  //           <Image source={item.Img} style={styles.cat_img} />
+  //           <Text style={[styles.cat_title,{color:currentSelected === index ? Colors.snow : 'black'}]}>{item.title}</Text>
+  //         </View>
+  //       </TouchableOpacity>
+  //       </>
+  //     )
+  //   }
 
-    const Details = (data,index) => {
-      return(
+  //   const Details = (data,index) => {
+  //     return(
       
-        <TouchableOpacity>
-        <View style={styles.deals_main}>
-          <View style={{
-            justifyContent:'space-evenly'
-          }}>
-            <Text style={{color: 'black', fontSize: 20,fontWeight:'bold'}}>{data.title}</Text>
-            <Text style={{color: 'black', fontSize: 14}}>{data.dec}</Text>
-            <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
-            ₹ {data.price}
-            </Text>
-          </View>
+  //       <TouchableOpacity onPress={() => navigation.navigate('Details',{
+  //         data:data,
+  //       })}>
+  //       <View style={styles.deals_main}>
+  //         <View style={{
+  //           justifyContent:'space-evenly'
+  //         }}>
+  //           <Text style={{color: 'black', fontSize: 20,fontWeight:'bold'}}>{data.title}</Text>
+  //           <Text style={{color: 'black', fontSize: 14}}>{data.dec}</Text>
+  //           <Text style={{color: 'black', fontSize: 16, fontWeight: 'bold'}}>
+  //           ₹ {data.price}
+  //           </Text>
+  //         </View>
 
-              <Image source={data.img} style={styles.deals_img} />
+  //             <Image source={data.img} style={styles.deals_img} />
             
-        </View>
-      </TouchableOpacity>
+  //       </View>
+  //     </TouchableOpacity>
       
-        )}
+  //       )}
 
 
-  return (
-    <View style={styles.categories_main}>
-          <Text style={{color:'black',fontWeight:'bold',fontSize:20,marginHorizontal:20}}>categories</Text>
-          <View style={styles.listcatWrapper}>
+  // return (
+  //   <View style={styles.categories_main}>
+  //         <Text style={{color:'black',fontWeight:'bold',fontSize:20,marginHorizontal:20}}>categories</Text>
+  //         <View style={styles.listcatWrapper}>
 
-          <FlatList 
-            data={categories}
-            renderItem={DisplayCategories}
-            keyExtractor={(item) => item.id}
-            horizontal
-            />
+  //         <FlatList 
+  //           data={categories}
+  //           renderItem={DisplayCategories}
+  //           keyExtractor={(item) => item.id}
+  //           horizontal
+  //           />
 
-            <View style={{marginTop:19}}>
+  //           <View style={{marginTop:19}}>
 
               
-              {categories[currentSelected].item.map(Details)}
+  //             {categories[currentSelected].item.map(Details)}
               
-            </View>
-            <TouchableOpacity>
+  //           </View>
+  //           <TouchableOpacity>
 
-            <Text style={{
+  //           <Text style={{
               
-              color:'black',
-              fontWeight:'bold',
-              textAlign:'center'
-            }} >Load More...</Text>
-            </TouchableOpacity>
-         </View>
-      </View>
-  )
+  //             color:'black',
+  //             fontWeight:'bold',
+  //             textAlign:'center'
+  //           }} >Load More...</Text>
+  //           </TouchableOpacity>
+  //        </View>
+  //     </View>
+  // )
 }
 
 const styles = StyleSheet.create({

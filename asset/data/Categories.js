@@ -1,25 +1,31 @@
 const categories = [
+    {
+            status:'All',
+            title:'All',
+    },
 
         {
             id:1,
             Img:require('../img/burger.png'),
             title:"Burger",
             selected:true,
+            status:'burger',
             item:[
                 {
                     id:1,
                     title:"Classic Veggie",
                     dec:'This is a top selling burger',
-                    img:require('../img/Categories/Burger/burger.png'),
+                    image:require('../img/Categories/Burger/burger.png'),
                     rating:4,
                     price:90,
                     selected:true,
+                    status:'Burger',
                 },
                 {
                     id:2,
                     title:"Portobello Mushroom",
                     dec:'This is a top selling burger',
-                    img:require('../img/Categories/Burger/big_burger.png'),
+                    image:require('../img/Categories/Burger/big_burger.png'),
                     rating:4,
                     price:150,
                     selected:true,
@@ -28,7 +34,7 @@ const categories = [
                     id:3,
                     title:"Black Bean",
                     dec:'This is a top selling burger',
-                   img:require('../img/Categories/Burger/small_burger.png'),
+                    image:require('../img/Categories/Burger/small_burger.png'),
                     rating:4,
                     price:150,
                     selected:true,
@@ -37,7 +43,7 @@ const categories = [
                     id:4,
                     title:"Black Bean Quinoa",
                     dec:'This is a top selling burger',
-                   img:require('../img/Categories/Burger/burger.png'),
+                    image:require('../img/Categories/Burger/burger.png'),
                     rating:4,
                     price:150,
                     selected:true,
@@ -46,7 +52,7 @@ const categories = [
                     id:5,
                     title:"Falafel Burgers",
                     dec:'This is a top selling burger',
-                   img:require('../img/Categories/Burger/big_burger.png'),
+                    image:require('../img/Categories/Burger/big_burger.png'),
                     rating:4,
                     price:150,
                     selected:true,
@@ -55,7 +61,7 @@ const categories = [
                     id:6,
                     title:"Cheesy Portobello",
                     dec:'This is a top selling burger',
-                   img:require('../img/Categories/Burger/small_burger.png'),
+                    image:require('../img/Categories/Burger/small_burger.png'),
                     rating:4,
                     price:150,
                     selected:true,
@@ -64,7 +70,7 @@ const categories = [
                     id:7,
                     title:"The Ultimate Veggie",
                     dec:'This is a top selling burger',
-                   img:require('../img/Categories/Burger/burger.png'),
+                    image:require('../img/Categories/Burger/burger.png'),
                     rating:4,
                     price:150,
                     selected:true,
@@ -73,7 +79,7 @@ const categories = [
                     id:8,
                     title:"Spicy Cauliflower",
                     dec:'This is a top selling burger',
-                   img:require('../img/Categories/Burger/big_burger.png'),
+                    image:require('../img/Categories/Burger/big_burger.png'),
                     rating:4,
                     price:150,
                     selected:true,
@@ -82,7 +88,7 @@ const categories = [
                     id:9,
                     title:"Grillable Veggie",
                     dec:'This is a top selling burger',
-                   img:require('../img/Categories/Burger/small_burger.png'),
+                    image:require('../img/Categories/Burger/small_burger.png'),
                     rating:4,
                     price:150,
                     selected:true,
@@ -95,6 +101,7 @@ const categories = [
             Img:require('../img/chinese.png'),
             title:"Chinese",
             selected:false,
+            status:'chinese',
             item:[
                 {
                     id:1,
@@ -182,7 +189,7 @@ const categories = [
         {
             id:3,
             Img:require('../img/drink.png'),
-            title:"Drink",
+            title:"drink",
             selected:false,
             item:[
                 {
@@ -272,7 +279,7 @@ const categories = [
         {
             id:4,
             Img:require('../img/indian.png'),
-            title:"Indian",
+            title:"indian",
             selected:false,
             item:[
                 {
@@ -362,7 +369,7 @@ const categories = [
         {
             id:5,
             Img:require('../img/italian.png'),
-            title:"Italian",
+            title:"italian",
             selected:false,
             item:[
                 {
@@ -452,7 +459,7 @@ const categories = [
         {
             id:6,
             Img:require('../img/panjabi.png'),
-            title:"Panjabi",
+            title:"panjabi",
             selected:false,
             item:[
                 {
@@ -542,7 +549,7 @@ const categories = [
         {
             id:7,
             Img:require('../img/pizza.png'),
-            title:"Pizza",
+            title:"pizza",
             selected:false,
             item:[
                 {
@@ -632,7 +639,7 @@ const categories = [
         {
             id:8,
             Img:require('../img/sweets.png'),
-            title:"Sweet",
+            title:"sweet",
             selected:false,
             item:[
                 {
@@ -722,3 +729,11 @@ const categories = [
 ]
 
 export default categories;
+
+
+export function getProducts() {
+    return categories;
+}
+export function getProduct(id) {
+    return categories.find((product) => (product.id == id));
+}

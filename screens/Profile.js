@@ -21,6 +21,7 @@ const Height = Dimensions.get('window').height;
 const Profile = () => {
   const [setdata, newdata] = useState(null);
   const navigation = useNavigation();
+  const PhoneNumber = auth()._user.phoneNumber;
   
   useEffect(() => {
     getData();
@@ -29,7 +30,7 @@ const Profile = () => {
   const getData = async () => {
     await firestore()
       .collection('Users')
-      .doc('Contact_details')
+      .doc(PhoneNumber)
       .get()
       .then(snapshot => {
         if (snapshot.exists) {
@@ -76,19 +77,28 @@ const Profile = () => {
 
             <View style={styles.btn_container}>
 
-              <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('UpdateContact')}>
+              {/* <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('UpdateContact')}>
                 <Text style={styles.btn_txt}>Edit Profile</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
               <TouchableOpacity style={styles.btn} onPress={logout}>
                 <Text style={styles.btn_txt}>Logout</Text>
               </TouchableOpacity>
             
+              <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Admin_login')}>
+                <Text style={styles.btn_txt}>Admin</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('OrderHistory')}>
+                <Text style={styles.btn_txt}>History</Text>
+              </TouchableOpacity>
+
             </View>
             
             </View>
           </>
         )}
+        
         </ImageBackground>
     </View>
   );

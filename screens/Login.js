@@ -19,6 +19,8 @@ const Login = ({navigation}) => {
         setUser(users);
         console.log(user)
         if (initializing) setInitializing(false);
+      }else{
+        null
       }
     })
       return unsubscribe;
