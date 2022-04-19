@@ -3,33 +3,44 @@ import React, {useState,useEffect} from 'react';
 
 import main from '../asset/img/main.png';
 import auth from '@react-native-firebase/auth';
+import axios from 'axios';
 
 
 const Login = ({navigation}) => {
   const [num, setNum] = useState('+91');
-  const [user, setUser] = useState();
-  const [initializing, setInitializing] = useState(true);
-
-
+  const [Name, setName] = useState('')
+  const [Email, setEmail] = useState('')
+  const [Password, setPassword] = useState('')
 
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged(users => {
-      if (users) {
+
+    const unsubscribe = auth().onAuthStateChanged(user => {
+      if (user) {
         navigation.replace('Home');
-        setUser(users);
-        console.log(user)
-        if (initializing) setInitializing(false);
-      }else{
-        null
       }
     })
-      return unsubscribe;
-  }, [])
-  
+    return unsubscribe
+  }, []);
+
+
 
   const getOtp = () => {
     if (num && num.length > 9) {
-      navigation.navigate('OtpPage', {num});
+      navigation.navigate('OtpPage', {num: num}),
+     
+      axios.post('http://smartex.lakecitypivotz.com/api/userRegistration',{
+        name: Name,
+        email: Email,
+        password: Password,
+        phone: num
+      })
+      .then(res => {
+        console.log(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
     } else {
       Alert.alert('Please Enter 10 Digit Number');
     }
@@ -38,7 +49,25 @@ const Login = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Image source={main} />
-      <Text style={styles.heading}>Enter Your Phone Number</Text>
+
+      <TextInput style={styles.input}
+        placeholder="Type here Name!"
+        onChangeText={(text) => setName(text)}
+        value={Name}
+      />
+
+      <TextInput style={styles.input}
+          placeholder="Type here Email!"
+          onChangeText={(text) => setEmail(text)}
+          value={Email}
+      />
+
+      <TextInput style={styles.input}
+        placeholder="Type here Password!"
+        onChangeText={(text) => setPassword(text)}
+        value={Password}
+      />
+
       <TextInput
         placeholder="Enter Your Phone Number"
         style={styles.input}

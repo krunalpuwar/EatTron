@@ -2,7 +2,6 @@ import { StyleSheet, Text, View,Image ,TouchableOpacity,FlatList,ScrollView,Dime
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import bestseller from '../asset/data/Bestseller';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 const Data = () => {

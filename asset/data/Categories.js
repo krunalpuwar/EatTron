@@ -2,6 +2,7 @@ const categories = [
     {
             status:'All',
             title:'All',
+            Img:require('../img/All.png'),
     },
 
         {
@@ -191,6 +192,7 @@ const categories = [
             Img:require('../img/drink.png'),
             title:"drink",
             selected:false,
+            status:'drink',
             item:[
                 {
                     id:1,

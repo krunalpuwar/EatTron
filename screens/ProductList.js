@@ -10,12 +10,13 @@ import categories from '../asset/data/categories.js';
 export function ProductsList () {
     
     const navigation = useNavigation();
-    const [currentSelected, setCurrentSelected] = useState([0]);
+    //Hooks
+    const [currentSelected, setCurrentSelected] = useState(0);
     const[datalist,setDatalist] = useState(bestseller)
     const[status,setStatus] = useState('All')
 
 
-
+    //Search Function
     const setStatusFilter = (status) => {
       if(status !== 'All'){
           setDatalist([...bestseller.filter(item => item.status === status)])
@@ -69,7 +70,7 @@ export function ProductsList () {
       <>
       <View style={{backgroundColor:Colors.snow}}>
 
-      <Text style={Styles.Heading}>Categories</Text>
+      <Text style={[Styles.Heading,{marginHorizontal:9}]}>Categories</Text>
            <FlatList 
             data={categories}
             renderItem={DisplayCategories}
@@ -117,8 +118,8 @@ const styles = StyleSheet.create({
 
 cat_img:{
 resizeMode: 'cover',
-width: 30,
-height: 30,
+width: 50,
+height: 50,
 
 },
 cat_title:{

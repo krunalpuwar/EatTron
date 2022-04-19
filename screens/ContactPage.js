@@ -1,18 +1,15 @@
-import { StyleSheet,View, Text ,TextInput,ImageBackground,TouchableOpacity,ToastAndroid} from 'react-native'
 import React,{useState} from 'react'
+import { StyleSheet,View, Text ,TextInput,TouchableOpacity,ToastAndroid} from 'react-native'
+
 
 import { Dimensions } from 'react-native';
-
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 
-// import bg from '../asset/img/backgroung.png';
 
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
-import auth from '@react-native-firebase/auth';
 
-// console.log(auth()._user.phoneNumber);
 
 const ContactPage = () => {
 
@@ -24,21 +21,18 @@ const ContactPage = () => {
   const[address,setAddress] = useState('');
   const[Pincode,setPincode] = useState('');
 
-  const PhoneNumber = auth()._user.phoneNumber;
-  console.log(PhoneNumber);
 
   const add = async() => {
 
     await firestore()
       .collection('Users')
-      .doc(PhoneNumber)
+      .doc()
       .set({
         Firstname: FirstName,
         Lastname: LName,
         Email: Email,
         Address: address,
         Pincode: Pincode,
-        PhoneNumber: PhoneNumber,
       })
       .then(() => {
         console.log('User added!');
@@ -52,17 +46,7 @@ const ContactPage = () => {
   return (
       <>
       
-    {/* <ImageBackground source={bg} style={{flex:1}}> */}
-
-      <Text style={{
-        fontSize: 28,
-        color: '#d5e0d8',
-        marginTop: Height/10,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginBottom: 20,
-
-      }}>Add Your Details</Text>
+      <Text style={styles.title}>Add Your Details</Text>
 
    <View style={styles.inputcontainer}>
 
@@ -103,27 +87,24 @@ const ContactPage = () => {
        />
 
       <TouchableOpacity>
-        <Text style={{  
-          color: '#d5e0d8',
-          fontSize: 20,
-          marginTop: 20,
-          fontWeight: 'bold',
-          textAlign: 'center',
-          backgroundColor:'green',
-          padding:Width/30
-        }} 
-        onPress={add}
-
-        >Submit</Text>
+        <Text style={styles.btn_txt} onPress={add}>Submit</Text>
       </TouchableOpacity>
 </View>
-    {/* </ImageBackground> */}
     </>
   )}
 
 export default ContactPage;
 
 const styles = StyleSheet.create({
+  title:{
+    fontSize: 28,
+        color: '#d5e0d8',
+        marginTop: Height/10,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginBottom: 20,
+
+  },
   namearea:{
     width: Width/3.2,
     height: Height/20,
@@ -150,7 +131,14 @@ const styles = StyleSheet.create({
   inputcontainer:{
     flex: 1,
     alignItems: 'center',
-    // marginTop:Height/10,
-
+  },
+  btn_txt:{
+    color: '#d5e0d8',
+          fontSize: 20,
+          marginTop: 20,
+          fontWeight: 'bold',
+          textAlign: 'center',
+          backgroundColor:'green',
+          padding:Width/30
   }
 })

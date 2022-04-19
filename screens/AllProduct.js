@@ -23,10 +23,10 @@ const listTab =[
         status:'Italian'
     },
     {
-        status:'Italian'
+        status:'sweet'
     },
     {
-        status:'Italian'
+        status:'drink'
     },
 ]
 

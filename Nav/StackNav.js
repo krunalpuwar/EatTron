@@ -23,6 +23,10 @@ import TrackOrder from '../screens/TrackOrder';
 import Admin_login from '../screens/admin/Admin_login';
 import Admin_panel from '../screens/admin/Admin_panel';
 import OrderHistory from '../screens/History/OrderHistory';
+import Data from '../screens/axi/Data';
+import Deatils_axi from '../screens/axi/Deatils_axi';
+import Cart_data from '../screens/axi/Cart_data';
+import ListOrder from '../screens/axi/ListOrder';
 
 
 const Stack = createNativeStackNavigator();
@@ -58,6 +62,12 @@ const StackNav = () => {
           <Stack.Screen name='PaymentCart' component={PaymentCart} options={{headerShown:!true}} />
           <Stack.Screen name='TiffinHome' component={TiffinHome} options={{headerShown:!true}} />
           <Stack.Screen name='TiffinDetails' component={TiffinDetails} options={{headerShown:!true}} />
+
+          {/* Practice Concept */}
+          <Stack.Screen name='data' component={Data} options={{headerShown:!true}} />
+          <Stack.Screen name='Deatils_axi' component={Deatils_axi} options={{headerShown:!true}} />
+          <Stack.Screen name='Cart_data' component={Cart_data} options={{headerShown:!true}} />
+          <Stack.Screen name='ListOrder' component={ListOrder} options={{headerShown:!true}} />
 
      </Stack.Navigator>
   )

@@ -40,13 +40,15 @@ const TiffinDetails = ({route}) => {
             console.log(error);
         });
     }
-      // console.log(data);
-
+    console.log(data);
+    useEffect(() => {
+      getData();
+    }, []);
 
    setTimeout(() => {
         Total();
         getData();
-    }, );
+    },10000 );
 
     const Total = () => {
         if(value1 === 'Lunch' && value === '3'){
@@ -81,13 +83,14 @@ const TiffinDetails = ({route}) => {
 
 
     const add = async() => {
-        setLoading(true);
       const Address = data.Address;
       const Name = data.Firstname + " " + data.Lastname;
       const Pincode = data.Pincode;
       const Email = data.Email;
       const Name_of_Tiffin = item.name;
-     
+      console.log(Address,Name,Pincode,Email,Name_of_Tiffin);
+      
+      setLoading(true);
       await firestore()
       .collection('Tiffin_service')
       .doc(Email)
@@ -99,7 +102,8 @@ const TiffinDetails = ({route}) => {
         Name: Name,
         Pincode: Pincode,
         Email: Email,
-        Name_of_Tiffin_provider: Name_of_Tiffin,
+        Tiffin_provider: Name_of_Tiffin,
+        createdAt: new Date().toLocaleDateString(),
       })
       .then(() => {
          navigation.navigate('TiffinPayment',{

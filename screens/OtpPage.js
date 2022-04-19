@@ -16,9 +16,6 @@ import {
 
     const {num} = route.params;
   
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
-  
     const [confirm, setConfirm] = useState(null);
     const [code, setCode] = useState('');
   
@@ -42,7 +39,7 @@ import {
       try {
         const res = await confirm.confirm(code);
         if (res) {
-          navigation.replace('ContactPage');
+          navigation.replace('Home');
         }
       } catch (error) {
         alert('Invalid code.');
@@ -94,5 +91,4 @@ import {
   
   export default OtpPage;
   
-  const styles = StyleSheet.create({});
   
