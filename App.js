@@ -1,9 +1,12 @@
 import 'react-native-gesture-handler';
 import React from 'react'
-import {LogBox} from 'react-native'
 import StackNav from './Nav/StackNav'
 import { NavigationContainer } from '@react-navigation/native'
 import { CartProvider } from './CartContext';
+
+import {LogBox} from 'react-native'
+LogBox.ignoreAllLogs(true)
+
 const App = () => {
   
   return (

@@ -47,14 +47,12 @@ export function ProductsList () {
 
     
     function renderProduct({item: product}) {
-        // console.log(product,"productList");
         return (
       <Product {...product} 
         onPress={() => {
             navigation.navigate('ProductDetails', {
             productId: product.id,
             });
-            // console.log(product.item,"ProductList")
       }}
       />
     );

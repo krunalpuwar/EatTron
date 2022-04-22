@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View,ImageBackground,TextInput,TouchableOpacity,ToastAndroid} from 'react-native'
-import React ,{useState} from 'react'
+import React ,{useState,useContext} from 'react'
 
 import {Dimensions} from 'react-native';
 
@@ -7,14 +7,19 @@ import bg from '../asset/img/background.png';
 
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
+import { Colors } from '../components/Style/Colors';
 
+import { CartContext } from '../CartContext';
 
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 
+
+
 const UpdateContact = () => {
 
     const navigation = useNavigation();
+    const {user} = useContext(CartContext);
     
     const[FirstName,setFirstName] = useState('');
     const[LName,setLName] = useState('');
@@ -24,8 +29,8 @@ const UpdateContact = () => {
 
     const Update_value = () => {
         firestore()
-        .collection('Users')
-        .doc('Contact_details')
+        .collection('User_profile')
+        .doc(user.uid)
         .update({
           Firstname: FirstName,
           Lastname: LName,
@@ -42,16 +47,7 @@ const UpdateContact = () => {
     
   return (
 <ImageBackground source={bg} style={{flex:1}}>
-      <Text style={{
-        fontSize: 19,
-        color: '#d5e0d8',
-        marginTop: Height/10,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginBottom: 20,
-        textTransform:'uppercase'
-
-      }}>Update Your Details</Text>
+      <Text style={styles.Heading}>Update Your Details</Text>
 
 <View style={styles.inputcontainer}>
 
@@ -62,6 +58,7 @@ const UpdateContact = () => {
       style={styles.namearea} 
       value={FirstName}
       onChangeText={(text) => setFirstName(text)} 
+      placeholderTextColor={Colors.black}
       />
 
       <TextInput 
@@ -69,6 +66,7 @@ const UpdateContact = () => {
        style={styles.namearea}
        value={LName}
         onChangeText={(text) => setLName(text)}
+      placeholderTextColor={Colors.black}
        />
       </View>
       <TextInput 
@@ -76,12 +74,16 @@ const UpdateContact = () => {
        style={styles.inputmain}
         value={Email}
         onChangeText={(text) => setEmail(text)}
+      placeholderTextColor={Colors.black}
+       
        />
       <TextInput 
        placeholder='Enter Your Address' 
        style={styles.inputmain}
         value={address}
         onChangeText={(text) => setAddress(text)}
+      placeholderTextColor={Colors.black}
+       
        />
       <TextInput 
        placeholder='Enter Your Pincode' 
@@ -89,6 +91,8 @@ const UpdateContact = () => {
         value={Pincode}
         onChangeText={(text) => setPincode(text)}
         keyboardType='numeric'
+        placeholderTextColor={Colors.black}
+       
        />
 
       <TouchableOpacity>
@@ -111,6 +115,15 @@ const UpdateContact = () => {
 }
 
 const styles = StyleSheet.create({
+  Heading:{
+    fontSize: 19,
+    color: Colors.snow,
+    marginTop: Height/10,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
+    textTransform:'uppercase'
+  },
   namearea:{
     width: Width/3.2,
     height: Height/20,

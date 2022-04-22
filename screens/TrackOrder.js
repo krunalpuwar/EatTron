@@ -6,23 +6,10 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 import { Styles } from '../components/Style/Style'
 import { Colors } from '../components/Style/Colors'
 import { useNavigation } from '@react-navigation/native'
-import RatingModal from '../components/RatingModal'
-import { ActivityIndicator } from 'react-native-paper'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 const TrackOrder = () => {
     const navigation = useNavigation();
-    useEffect(() => {
-    
-      mod();
-
-    },[])
-    
-    const mod = () => {
-    setTimeout(() => {
-        <ActivityIndicator animating={true} color={Colors.primary} size={'large'} />
-        alert('Thank you for your feedback')
-        },8000)
-      }
     
   return (
         <>
@@ -46,21 +33,25 @@ const TrackOrder = () => {
           />
 
         </View>
-    <View style={{
-        flex: 1,
-        alignItems: 'center',
-        backgroundColor:Colors.snow
-    }}>
-{/*  */}
-      <View style={{
-          backgroundColor:'green',
-            justifyContent:'center',
-            height:'60%',
-            width:'90%',
+    <View style={styles.container}>
+      
+<View style={styles.card}>
 
-      }}>
+    <MapView
+       provider={PROVIDER_GOOGLE} 
+       style={styles.map}
+       region={{
+         latitude: 23.0225,
+         longitude: 72.5714,
+         latitudeDelta: 0.015,
+         longitudeDelta: 0.0121,
+        }}
+        >
+      </MapView>
 
       </View>
+
+      
       {/*  */}
       <View style={{flexDirection:'row',justifyContent:'space-between',width:'90%',marginTop:19}}>
           <Image  source={logo} style={{height:60,width:60,borderRadius:90}}/>
@@ -100,9 +91,11 @@ const TrackOrder = () => {
 export default TrackOrder
 
 const styles = StyleSheet.create({
-    // container:{
-    //         backgroundColor:Colors.snow
-    // },
+    container:{
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor:Colors.snow
+    },
     header: {
         flexDirection:'row',
         aligndatas:'center',
@@ -110,4 +103,13 @@ const styles = StyleSheet.create({
         padding:19,
         backgroundColor:Colors.snow
        },
+       card:{
+        width:'90%',
+        height:'60%',
+        borderRadius:12
+      },
+      map:{
+        width:'100%',
+        height:'100%',
+      }
 })

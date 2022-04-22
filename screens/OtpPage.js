@@ -1,19 +1,11 @@
-import {
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-    Image,
-  } from 'react-native';
-  import React, {useState, useEffect} from 'react';
-  import auth from '@react-native-firebase/auth';
-  
-  
-  import main from '../asset/img/main.png';
+import {Text,TextInput,TouchableOpacity,View,Image} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import auth from '@react-native-firebase/auth';
+import main from '../asset/img/main.png';
   
   const OtpPage = ({navigation, route}) => {
 
+    
     const {num} = route.params;
   
     const [confirm, setConfirm] = useState(null);

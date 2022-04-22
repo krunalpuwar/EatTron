@@ -1,26 +1,20 @@
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Image,
-  Text,
-  Dimensions,
-} from 'react-native';
 import React, {useState} from 'react';
 import slider from '../asset/data/slider';
+import {StyleSheet,View,ScrollView,Image,Text,Dimensions} from 'react-native';
 
 
 const WIDTH = Dimensions.get('window').width;
 const HEIGHT = Dimensions.get('window').height;
 
 const Slider = () => {
+  
   const [img, setImg] = useState(0);
   
   const onChange = nativeEvent => {
     if (nativeEvent) {
       const slide = Math.ceil(
         nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.WIDTH,
-      );
+      )
       if (slide !== img) {
         setImg(slide);
       }
@@ -39,7 +33,7 @@ const Slider = () => {
           horizontal
           style={[styles.wrap]}>
           {slider.map((e, index) => {
-            return <Image key={index} style={[styles.img,{ marginHorizontal:img == index ? 0 : 10 }]} source={e.imgs} />;
+            return <Image key={index} style={[styles.img,{ marginHorizontal:img == index ? 0 : 10 }]} source={e.imgs} />
           })}
         </ScrollView>
 

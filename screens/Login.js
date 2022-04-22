@@ -3,14 +3,10 @@ import React, {useState,useEffect} from 'react';
 
 import main from '../asset/img/main.png';
 import auth from '@react-native-firebase/auth';
-import axios from 'axios';
 
 
 const Login = ({navigation}) => {
   const [num, setNum] = useState('+91');
-  const [Name, setName] = useState('')
-  const [Email, setEmail] = useState('')
-  const [Password, setPassword] = useState('')
 
   useEffect(() => {
 
@@ -26,21 +22,7 @@ const Login = ({navigation}) => {
 
   const getOtp = () => {
     if (num && num.length > 9) {
-      navigation.navigate('OtpPage', {num: num}),
-     
-      axios.post('http://smartex.lakecitypivotz.com/api/userRegistration',{
-        name: Name,
-        email: Email,
-        password: Password,
-        phone: num
-      })
-      .then(res => {
-        console.log(res.data)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-
+      navigation.navigate('OtpPage', {num: num})
     } else {
       Alert.alert('Please Enter 10 Digit Number');
     }
@@ -50,30 +32,13 @@ const Login = ({navigation}) => {
     <View style={styles.container}>
       <Image source={main} />
 
-      <TextInput style={styles.input}
-        placeholder="Type here Name!"
-        onChangeText={(text) => setName(text)}
-        value={Name}
-      />
-
-      <TextInput style={styles.input}
-          placeholder="Type here Email!"
-          onChangeText={(text) => setEmail(text)}
-          value={Email}
-      />
-
-      <TextInput style={styles.input}
-        placeholder="Type here Password!"
-        onChangeText={(text) => setPassword(text)}
-        value={Password}
-      />
-
       <TextInput
         placeholder="Enter Your Phone Number"
         style={styles.input}
         value={num}
         onChangeText={text => setNum(text)}
         keyboardType="numeric"
+        maxLength={13}
       />
 
       <TouchableOpacity style={styles.btn} onPress={getOtp}>

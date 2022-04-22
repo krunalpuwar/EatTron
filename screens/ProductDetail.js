@@ -34,6 +34,7 @@ export function ProductDetails({route}) {
 
   function onAddToCart() {
     addItemToCart(product.id);
+    navigation.navigate('Cart');
   }
 //   console.log(product,"productDetails");
  

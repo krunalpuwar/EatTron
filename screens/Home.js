@@ -10,11 +10,12 @@ import { ProductsList } from './ProductList';
 
 
 const Home = () => {
- 
+
+  
+
   return (
     <View style={{backgroundColor:Colors.snow}}>
-      
-      <StatusBar backgroundColor={Colors.snow} barStyle='dark-content' />
+    <StatusBar backgroundColor={Colors.snow} barStyle='dark-content' />
       {/* Vertical Scroll View */}
       <ScrollView showsVerticalScrollIndicator={false}>
 

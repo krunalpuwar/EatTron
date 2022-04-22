@@ -1,6 +1,7 @@
 import React, {createContext, useState,useEffect} from 'react';
 import { getProduct } from './asset/data/Bestseller';
-
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 export const CartContext = createContext();
 
@@ -8,6 +9,12 @@ export function CartProvider(props) {
   
 
     const [items, setItems] = useState([]);
+    const [user, setUser] = useState({});
+
+    useEffect(async() => {
+      setUser(auth().currentUser);
+    },[])
+
 
   function addItemToCart(id) {
     
@@ -84,7 +91,7 @@ function getItemsCount() {
 
   return (
     <CartContext.Provider 
-      value={{items,setItems, getItemsCount, addItemToCart, getTotalPrice,removeItemFromCart,increaseItemQuantity,decreaseItemQuantity}}>
+      value={{user,items,setItems, getItemsCount, addItemToCart, getTotalPrice,removeItemFromCart,increaseItemQuantity,decreaseItemQuantity}}>
       {props.children}
     </CartContext.Provider>
   );

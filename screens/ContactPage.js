@@ -1,14 +1,18 @@
-import React,{useState} from 'react'
-import { StyleSheet,View, Text ,TextInput,TouchableOpacity,ToastAndroid} from 'react-native'
+import React,{useState,useContext} from 'react'
+import { StyleSheet,View, Text ,TextInput,TouchableOpacity,ToastAndroid,ImageBackground} from 'react-native'
 
 
 import { Dimensions } from 'react-native';
 const Width = Dimensions.get('window').width;
 const Height = Dimensions.get('window').height;
 
+import bg from '../asset/img/background.png';
 
 import firestore from '@react-native-firebase/firestore';
 import { useNavigation } from '@react-navigation/native';
+import { Colors } from '../components/Style/Colors';
+
+import { CartContext } from '../CartContext'
 
 
 const ContactPage = () => {
@@ -21,18 +25,21 @@ const ContactPage = () => {
   const[address,setAddress] = useState('');
   const[Pincode,setPincode] = useState('');
 
+  const {user} = useContext(CartContext);
+  console.log(user.uid);
 
   const add = async() => {
 
     await firestore()
-      .collection('Users')
-      .doc()
+      .collection('User_profile')
+      .doc(user.uid)
       .set({
         Firstname: FirstName,
         Lastname: LName,
         Email: Email,
         Address: address,
         Pincode: Pincode,
+        Uid:user.uid
       })
       .then(() => {
         console.log('User added!');
@@ -45,18 +52,21 @@ const ContactPage = () => {
 
   return (
       <>
-      
+    <View style={styles.container}>
+    <ImageBackground 
+      source={bg}
+      style={{width: Width, height: Height}}
+      >
       <Text style={styles.title}>Add Your Details</Text>
+    <View style={styles.inputcontainer}>
 
-   <View style={styles.inputcontainer}>
-
-
-      <View style={{flexDirection:'row'}}>
+    <View style={{flexDirection:'row'}}>
       <TextInput 
       placeholder='First Name' 
       style={styles.namearea} 
       value={FirstName}
       onChangeText={(text) => setFirstName(text)} 
+      placeholderTextColor={Colors.black}
       />
 
       <TextInput 
@@ -64,6 +74,8 @@ const ContactPage = () => {
        style={styles.namearea}
        value={LName}
         onChangeText={(text) => setLName(text)}
+        placeholderTextColor={Colors.black}
+
        />
       </View>
       <TextInput 
@@ -71,12 +83,16 @@ const ContactPage = () => {
        style={styles.inputmain}
         value={Email}
         onChangeText={(text) => setEmail(text)}
+        placeholderTextColor={Colors.black}
+
        />
       <TextInput 
        placeholder='Enter Your Address' 
        style={styles.inputmain}
         value={address}
         onChangeText={(text) => setAddress(text)}
+        placeholderTextColor={Colors.black}
+
        />
       <TextInput 
        placeholder='Enter Your Pincode' 
@@ -84,11 +100,16 @@ const ContactPage = () => {
         value={Pincode}
         onChangeText={(text) => setPincode(text)}
         keyboardType='numeric'
+        placeholderTextColor={Colors.black}
+
        />
 
       <TouchableOpacity>
         <Text style={styles.btn_txt} onPress={add}>Submit</Text>
       </TouchableOpacity>
+</View>
+</ImageBackground>
+
 </View>
     </>
   )}
@@ -96,8 +117,16 @@ const ContactPage = () => {
 export default ContactPage;
 
 const styles = StyleSheet.create({
+
+  container: {
+    flex: 1,
+    backgroundColor:Colors.snow,
+    alignItems:'center',
+    justifyContent:'center'
+
+  },
   title:{
-    fontSize: 28,
+        fontSize: 28,
         color: '#d5e0d8',
         marginTop: Height/10,
         fontWeight: 'bold',

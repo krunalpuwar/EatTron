@@ -1,18 +1,16 @@
-import {StyleSheet, Text, View, StatusBar, Image,TouchableOpacity,ImageBackground} from 'react-native';
-import React, {useState, useEffect} from 'react';
+import {StyleSheet, Text, View, Image,TouchableOpacity} from 'react-native';
+import React, {useState, useEffect,useContext} from 'react';
 import { Colors } from '../components/Style/Colors';
 import {Dimensions} from 'react-native';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-// import Edit_Profile from '../components/Edit_Profile';
 import { useNavigation } from '@react-navigation/native';
 
+import { CartContext } from '../CartContext';
 import logo from '../asset/img/person.png';
-import Divider from '../components/Divider';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import OrderHistory from './History/OrderHistory';
 import { Styles } from '../components/Style/Style';
 
 const Width = Dimensions.get('window').width;
@@ -22,61 +20,61 @@ const Height = Dimensions.get('window').height;
 
 
 const Profile = () => {
-  const [setdata, newdata] = useState(null);
   const navigation = useNavigation();
+  const {user} = useContext(CartContext);
+  const [userData,setUserData] = useState(null);
+  
   
   useEffect(() => {
     getData();
-  }, []);
-
-  setTimeout(() => {
-    getData();
-  },10000)
+  }, [userData]);
 
   const getData = async () => {
     await firestore()
-      .collection('Users')
-      .doc()
+      .collection('User_profile')
+      .doc(user.uid)
       .get()
-      .then(snapshot => {
-        if (snapshot.exists) {
-          newdata(snapshot.data());
+      .then(doc => {
+        if (doc.exists) {
+          setUserData(doc.data());
         } else {
-          console.log('Data Not Found');
+          console.log('No such document!');
+          setUserData(null);
         }
-      });
+      })
   };
 
-  const logout = async() => {
+
+    
+    const logout = async() => {
     await auth()
       .signOut()
       .then(() => 
-        console.log('User signed out!'),
-        navigation.navigate('Login')  
-    );
+      console.log('User signed out!'),
+      navigation.navigate('Login')  
+      );
   }
 
   return (
     <View style={styles.container}>
 
-      {/* Header */}
+     
       <View style={styles.header}>
-          <AntDesign name="arrowleft" size={25} color={Colors.black} style={styles.back} onPress={() => navigation.navigate('Home')}/>
+      <AntDesign name="arrowleft" size={25} color={Colors.black} style={styles.back} onPress={() => navigation.navigate('Home')}/>
                 <Text style={{color:Colors.black}}>Profile</Text>
           <View style={styles.header_icon}>
-            <AntDesign name="setting" size={25} color={Colors.black} onPress={() => navigation.navigate('Admin_login')}/>
+          <AntDesign name="setting" size={25} color={Colors.black} onPress={() => navigation.navigate('Admin_login')}/>
             </View>
       </View>
 
-      {/* Profile Image & Details */}
-      {setdata != null && (
+      {userData != null && (
           <>
       <View style={styles.profile_wrapper}>
      
            <Image source={logo} style={styles.profile_img}/> 
            <View style={styles.profile_name}>
-             <Text style={styles.details_txt}>{`${setdata.Firstname} ${setdata.Lastname}`}</Text>
-             <Text style={styles.details_txt_name}>{setdata.Email}</Text>
+             <Text style={styles.details_txt}>{`${userData.Firstname} ${userData.Lastname}`}</Text>
+             <Text style={styles.details_txt_name}>{userData.Email}</Text>
            </View>
            <View>
              <AntDesign name="edit" size={25} color={Colors.black} style={styles.edit} onPress={() => navigation.navigate('UpdateContact')}/>
@@ -84,28 +82,35 @@ const Profile = () => {
          
       </View>    
 
-      {/* Button */}
       <View style={styles.btn_container}>
         <TouchableOpacity style={styles.btn} onPress={logout}>
           <Text style={styles.btn_txt}>Logout</Text>
         </TouchableOpacity>
        </View>
-
-       {/* History */}
-        <View style={styles.history_wrapper}>
-          <OrderHistory />  
-        </View>
   </>
   )}
   {
-    setdata == null && (
+    userData == null && (
       <>
       <View style={{alignItems:'center',justifyContent:'center'}}>
         <Text style={Styles.Heading}>No Data Found</Text>
       </View>
+      <View style={styles.btn_container}>
+        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ContactPage')}>
+          <Text style={styles.btn_txt}>Add Details</Text>
+        </TouchableOpacity>
+       </View>
+    
+    <View style={styles.btn_container}>
+    <TouchableOpacity style={styles.btn} onPress={logout}>
+    <Text style={styles.btn_txt}>Logout</Text>
+    </TouchableOpacity>
+  </View> 
+    
       </>
 
     )}
+    
     </View>
   );
 };

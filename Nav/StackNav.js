@@ -27,6 +27,7 @@ import Data from '../screens/axi/Data';
 import Deatils_axi from '../screens/axi/Deatils_axi';
 import Cart_data from '../screens/axi/Cart_data';
 import ListOrder from '../screens/axi/ListOrder';
+import Card from '../screens/Payment/Card';
 
 
 const Stack = createNativeStackNavigator();
@@ -36,30 +37,40 @@ const StackNav = () => {
 
   return (
     <Stack.Navigator>
+      
+      <Stack.Group>
           <Stack.Screen name='Login' component={Login} options={{headerShown:!true}} />
           <Stack.Screen name='OtpPage' component={OtpPage} options={{headerShown:!true}} />
-          <Stack.Screen name='ContactPage' component={ContactPage} options={{headerShown:!true}} />
-
+      </Stack.Group>
+      
           <Stack.Screen name='Home' component={Tabbars} options={{headerShown:!true}} />
-
+          
+          {/* User Details */}
+          <Stack.Screen name='ContactPage' component={ContactPage} options={{headerShown:!true}} />
+          <Stack.Screen name='Profile' component={Profile} options={{headerShown:!true}} />
+          <Stack.Screen name='UpdateContact' component={UpdateContact} options={{headerShown:!true}} />
+          <Stack.Screen name='OrderHistory' component={OrderHistory} options={{headerShown:!true}} />
+          
           {/* Product  */}
           <Stack.Screen name='Products' component={ProductsList } />
           <Stack.Screen name='ProductDetails' component={ProductDetails} options={{headerShown:!true}} />
           <Stack.Screen name='ProductItems' component={ProductItems} options={{headerShown:!true}} />
           <Stack.Screen name='Cart' component={Cart} options={{headerShown:!true}} />
+          
+          {/* Payment */}
           <Stack.Screen name='MainPayment' component={MainPayment} options={{headerShown:!true}} />
+          <Stack.Screen name='Payment' component={Payment} options={{headerShown:!true}} />
+          <Stack.Screen name='Card' component={Card} options={{headerShown:!true}} />
+          <Stack.Screen name='PaymentCart' component={PaymentCart} options={{headerShown:!true}} />
           <Stack.Screen name='TrackOrder' component={TrackOrder} options={{headerShown:!true}} />
 
           {/* Admin */}
           <Stack.Screen name='Admin_login' component={Admin_login} options={{headerShown:!true}} />
           <Stack.Screen name='Admin_panel' component={Admin_panel} options={{headerShown:!true}} />
 
-          <Stack.Screen name='OrderHistory' component={OrderHistory} options={{headerShown:!true}} />
-          <Stack.Screen name='Profile' component={Profile} options={{headerShown:!true}} />
-          <Stack.Screen name='UpdateContact' component={UpdateContact} options={{headerShown:!true}} />
-          <Stack.Screen name='Payment' component={Payment} options={{headerShown:!true}} />
+          
+          {/* Tiffin service */}
           <Stack.Screen name='TiffinPayment' component={TiffinPayment} options={{headerShown:!true}} />
-          <Stack.Screen name='PaymentCart' component={PaymentCart} options={{headerShown:!true}} />
           <Stack.Screen name='TiffinHome' component={TiffinHome} options={{headerShown:!true}} />
           <Stack.Screen name='TiffinDetails' component={TiffinDetails} options={{headerShown:!true}} />
 

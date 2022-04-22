@@ -8,6 +8,7 @@ import { CartContext } from '../CartContext';
 
 
 
+
 export default function Header() {
   
   const {getItemsCount} = useContext(CartContext);
@@ -19,16 +20,14 @@ export default function Header() {
     <View style={styles.header_home}>
           
           <Text style={{color:'black',fontSize:15}}>Hello,{'\n'}<Text style={{fontWeight:'bold'}}>Krunal</Text></Text>  
+          
           <View style={{flexDirection:'row',alignItems:'center'}}>        
-            <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+            
+            <TouchableOpacity onPress={() => navigation.navigate('TrackOrder')}>
              <AntDesign name="shoppingcart" size={29} color="#e8e8e8" style={{margin:6,color:'black'}} />
              <Badge style={{position:'absolute'}}>{getItemsCount()}</Badge>
              </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.navigate('data')}>
-             <Image source={logo} style={styles.logo1}  />
-          </TouchableOpacity>
-         
           </View>
       </View>
   )

@@ -11,7 +11,7 @@ const Cart_data = () => {
 
     const navigation = useNavigation();
     const [lists,setLists] = useState(null);
-    const [data ,setData] = useState(null);
+    const [data ,setData] = useState([]);
 
 
     const del  = async(id) => {
@@ -29,7 +29,7 @@ const Cart_data = () => {
     }
 
     
-    
+     
     useEffect(()=>{
         axios.post('http://smartex.lakecitypivotz.com/api/listCartData',{
             user_id:"23"
@@ -47,8 +47,8 @@ const Cart_data = () => {
     
 
    
-    const AddToOrder = () => {
-        axios.post('http://smartex.lakecitypivotz.com/api/addToOrder',{
+    const AddToOrder = async() => {
+        await axios.post('http://smartex.lakecitypivotz.com/api/addToOrder',{
             customer_Id :"23",
             totel_amount:data.total_price,
             total_delivery_charge:data.total_delivery_charge,
@@ -65,7 +65,7 @@ const Cart_data = () => {
         })
     }
 
-
+    const mrps = 0;
 
 
     return (
@@ -107,7 +107,7 @@ const Cart_data = () => {
             />
             
             <View style={styles.total}>
-                <Text>Total Price : $ {lists != null? data.net_price : data.net_price == 0}</Text>
+                <Text>Total Price : ${data === null ? mrps : data.net_price} </Text>
                 <TouchableOpacity style={Styles.btn_bg} onPress={AddToOrder}>
                     <Text style={{color:Colors.black}}>Checkout</Text>
                 </TouchableOpacity>

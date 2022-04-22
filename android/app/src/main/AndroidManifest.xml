@@ -7,9 +7,17 @@
       android:name=".MainApplication"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
-    
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+
+      <meta-data
+        android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyABOdvl4XYaLW_i9PwBMztc3fcYMH7VkGY"/>
+      
+      <meta-data
+        android:name="com.google.android.gms.wallet.api.enabled"
+        android:value="true" />
+
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"

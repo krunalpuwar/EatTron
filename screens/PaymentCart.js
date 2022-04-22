@@ -44,7 +44,7 @@ const PaymentCart = ({route}) => {
 
          {/* UPI */}
 
-         <TouchableOpacity style={{flexDirection:'row',margin:19,borderBottomWidth:1,padding:9}}>
+         <TouchableOpacity style={{flexDirection:'row',margin:19,borderBottomWidth:1,padding:9}} onPress={() => navigation.navigate('Card')}>
            <Ionicons name='qr-code-outline' size={29} color='black' />
            <View style={{marginHorizontal:12}}>
              <Text style={{color:'black',fontWeight:'bold'}}>Upi</Text>
