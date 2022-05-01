@@ -104,8 +104,7 @@ const AllProduct = () => {
                     >
                     <Text style={styles.txtTab}>{e.status}</Text>
                 </TouchableOpacity>
-            ))
-            
+            ))         
         }
      </View>
         </ScrollView>

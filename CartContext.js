@@ -1,7 +1,6 @@
 import React, {createContext, useState,useEffect} from 'react';
 import { getProduct } from './asset/data/Bestseller';
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 
 export const CartContext = createContext();
 
